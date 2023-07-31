@@ -12,6 +12,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+      automaticallyImplyLeading: false,
         title: Container(
           width: double.infinity,
           height: 40,
@@ -22,9 +23,10 @@ class _SearchPageState extends State<SearchPage> {
           child: const Center(
             child: TextField(
               decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: 'Search...',
-                  border: InputBorder.none),
+                prefixIcon: Icon(Icons.search),
+                hintText: 'Search...',
+                border: InputBorder.none,
+              ),
             ),
           ),
         ),
