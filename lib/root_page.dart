@@ -23,7 +23,7 @@ class _RootPageState extends State<RootPage> {
     return Scaffold(
       body: pages[currentPage],
       appBar: AppBar(
-        title: const Text('Film Flys'),
+        title: const Text('Film Fly'),
       ),
       bottomNavigationBar: NavigationBar(
         destinations: const [
