@@ -12,6 +12,7 @@ class FilmFly extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Film Fly',
       home: const FirstPage(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
