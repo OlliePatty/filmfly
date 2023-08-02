@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:filmfly/preferences_page.dart';
+import 'package:filmfly/genre_preferences_page.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -44,7 +44,7 @@ class SignUp extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const Preferences(),
+                        builder: (context) => const GenrePreferences(),
                       ),
                     );
                   },

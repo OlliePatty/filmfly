@@ -1,14 +1,15 @@
+import 'package:filmfly/actor_preferences_page.dart';
 import 'package:filmfly/models/utils.dart';
 import 'package:flutter/material.dart';
 
-class Preferences extends StatefulWidget {
-  const Preferences({super.key});
+class GenrePreferences extends StatefulWidget {
+  const GenrePreferences({super.key});
 
   @override
-  State<Preferences> createState() => _PreferencesState();
+  State<GenrePreferences> createState() => _GenrePreferencesState();
 }
 
-class _PreferencesState extends State<Preferences> {
+class _GenrePreferencesState extends State<GenrePreferences> {
   var isLoaded = false;
   List<dynamic> genres = [];
 
@@ -28,6 +29,7 @@ class _PreferencesState extends State<Preferences> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Film Fly'),
+        automaticallyImplyLeading: false,
       ),
       body: Visibility(
         visible: isLoaded,
@@ -43,6 +45,20 @@ class _PreferencesState extends State<Preferences> {
           },
         ),
       ),
+      persistentFooterButtons: <Widget>[
+        const Text('Next'),
+        IconButton(
+          icon: const Icon(Icons.arrow_forward),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ActorPrefernces(),
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }
