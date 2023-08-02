@@ -19,8 +19,15 @@ class SignUp extends StatelessWidget {
               TextFormField(
                 decoration: const InputDecoration(
                   icon: Icon(Icons.person),
-                  hintText: 'What is your first name?',
-                  labelText: 'First Name',
+                  hintText: 'What is your name?',
+                  labelText: 'Name',
+                ),
+              ),
+              TextFormField(
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.person),
+                  hintText: 'What is your username?',
+                  labelText: 'Username',
                 ),
               ),
               TextFormField(
@@ -33,8 +40,8 @@ class SignUp extends StatelessWidget {
               TextFormField(
                 decoration: const InputDecoration(
                   icon: Icon(Icons.person),
-                  hintText: 'What is your username?',
-                  labelText: 'Username',
+                  hintText: 'What is your passowrd?',
+                  labelText: 'Password',
                 ),
               ),
               Padding(
