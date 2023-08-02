@@ -38,8 +38,11 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
         child: ListView.builder(
           itemCount: actors.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(actors[index]),
+            return ElevatedButton(
+              child: Text(actors[index]),
+              onPressed: () {
+                
+              },
             );
           },
         ),

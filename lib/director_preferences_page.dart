@@ -38,8 +38,11 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
         child: ListView.builder(
           itemCount: directors.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(directors[index]),
+            return ElevatedButton(
+              child: Text(directors[index]),
+              onPressed: () {
+                
+              },
             );
           },
         ),
