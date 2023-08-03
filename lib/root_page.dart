@@ -64,7 +64,7 @@ class _RootPageState extends State<RootPage> {
               child: Text(
                 'Film Fly',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 35, color: Colors.white),
+                style: TextStyle(fontSize: 30, color: Colors.white),
               ),
             ),
           ],
