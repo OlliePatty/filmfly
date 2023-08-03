@@ -13,11 +13,17 @@ class _SignUpState extends State<SignUp> {
   List<String> selected = [];
 
   final _formKey = GlobalKey<FormState>();
-  final myController = TextEditingController();
+  final nameController = TextEditingController();
+  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   void dispose() {
-    myController.dispose();
+    nameController.dispose();
+    usernameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -35,7 +41,7 @@ class _SignUpState extends State<SignUp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
-                controller: myController,
+                controller: nameController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a name';
@@ -49,6 +55,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               TextFormField(
+                controller: usernameController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a username';
@@ -62,6 +69,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               TextFormField(
+                controller: emailController,
                 validator: (value) {
                   if (value == null || !value.contains('@')) {
                     return 'Please enter a valid email address';
@@ -75,6 +83,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               TextFormField(
+                controller: passwordController,
                 validator: (value) {
                   if (value == null || value.length < 5) {
                     return 'Please enter a password of at least 5 characters';
@@ -92,7 +101,7 @@ class _SignUpState extends State<SignUp> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      postUser(myController.text);
+                      postUser(nameController.text, usernameController.text, emailController.text, passwordController.text);
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Creating your account...')));
                       Navigator.pushReplacement(

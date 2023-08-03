@@ -27,7 +27,7 @@ Future<http.Response> patchUser() {
   );
 }
 
-Future<http.Response> postUser(String name) {
+Future<http.Response> postUser(String name, String username, String email, String password) {
   return http.post(
     Uri.parse('https://film-fly.onrender.com/api/users'),
     headers: <String, String>{
@@ -35,9 +35,9 @@ Future<http.Response> postUser(String name) {
     },
     body: jsonEncode(<String, String>{
       "name": name,
-      "username": "TestSignUp",
-      "email_address": "email.com",
-      "password": "password123"
+      "username": username,
+      "email_address": email,
+      "password": password
     }),
   );
 }
