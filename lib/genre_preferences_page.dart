@@ -2,6 +2,16 @@ import 'package:filmfly/actor_preferences_page.dart';
 import 'package:filmfly/models/utils.dart';
 import 'package:flutter/material.dart';
 
+// class Prefs {
+//   List genres = [];
+//   List actors = [];
+//   List directors = [];
+
+//   Prefs(this.genres, this.actors, this.directors);
+// }
+
+// final selectedClass = Prefs([], [], []);
+
 class GenrePreferences extends StatefulWidget {
   const GenrePreferences({super.key});
 
@@ -10,15 +20,15 @@ class GenrePreferences extends StatefulWidget {
 }
 
 class _GenrePreferencesState extends State<GenrePreferences> {
+  var isLoaded = false;
   List<String> selected = [];
+  List<dynamic> genres = [];
+
   void onPress(genre) {
     selected.add(genre);
+
     debugPrint('$selected');
   }
-
-  var isLoaded = false;
-  List<dynamic> genres = [];
-  List<String> selected = [];
 
   @override
   void initState() {
@@ -29,11 +39,6 @@ class _GenrePreferencesState extends State<GenrePreferences> {
         genres = data['genres'];
       });
     });
-  }
-
-  void onPress(genre) {
-    selected.add(genre);
-    debugPrint('$selected');
   }
 
   @override
@@ -48,16 +53,20 @@ class _GenrePreferencesState extends State<GenrePreferences> {
         replacement: const Center(
           child: CircularProgressIndicator(),
         ),
-        child: ListView.builder(
-          itemCount: genres.length,
-          itemBuilder: (context, index) {
-            return ElevatedButton(
-              child: Text(genres[index]),
-              onPressed: () {
-                
-              },
-            );
-          },
+        child: Wrap(
+          alignment: WrapAlignment.center,
+          verticalDirection: VerticalDirection.down,
+          spacing: 10,
+          children: genres.map(
+            (genre) {
+              return ElevatedButton(
+                onPressed: () {
+                  onPress(genre);
+                },
+                child: Text(genre),
+              );
+            },
+          ).toList(),
         ),
       ),
       persistentFooterButtons: <Widget>[
@@ -68,7 +77,7 @@ class _GenrePreferencesState extends State<GenrePreferences> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const ActorPrefernces(),
+                builder: (context) => ActorPrefernces(selectedGenres: selected),
               ),
             );
           },

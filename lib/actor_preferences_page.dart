@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:filmfly/models/utils.dart';
 import 'package:filmfly/director_preferences_page.dart';
+import 'package:filmfly/genre_preferences_page.dart';
 
 class ActorPrefernces extends StatefulWidget {
-  const ActorPrefernces({super.key});
+  const ActorPrefernces({Key? key, required this.selectedGenres})
+      : super(key: key);
+
+  final List selectedGenres;
+  
+  
 
   @override
   State<ActorPrefernces> createState() => _ActorPreferncesState();
@@ -12,7 +18,7 @@ class ActorPrefernces extends StatefulWidget {
 class _ActorPreferncesState extends State<ActorPrefernces> {
   var isLoaded = false;
   List<dynamic> actors = [];
-  List<String> selected = [];
+  List<String> selectedActors = [];
 
   @override
   void initState() {
@@ -25,16 +31,15 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
     });
   }
 
-    void onPress(actor) {
-    selected.add(actor);
-    debugPrint('$selected');
+  void onPress(actor) {
+    selectedActors.add(actor);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Film Fly'),
+        title: const Text('Actors'),
       ),
       body: Visibility(
         visible: isLoaded,
@@ -48,7 +53,6 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
           children: actors.map(
             (actor) {
               return ElevatedButton(
-
                 onPressed: () {
                   onPress(actor);
                 },
@@ -66,7 +70,7 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const DirectorPreferences(),
+                builder: (context) => DirectorPreferences(selectedGenres : widget.selectedGenres, selectedActors: selectedActors),
               ),
             );
           },

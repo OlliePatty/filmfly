@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:filmfly/models/utils.dart';
 
 class DirectorPreferences extends StatefulWidget {
-  const DirectorPreferences({super.key});
+  const DirectorPreferences(
+      {Key? key, required this.selectedGenres, required this.selectedActors})
+      : super(key: key);
+
+  final List selectedGenres;
+  final List selectedActors;
 
   @override
   State<DirectorPreferences> createState() => _DirectorPreferencesState();
@@ -12,7 +17,7 @@ class DirectorPreferences extends StatefulWidget {
 class _DirectorPreferencesState extends State<DirectorPreferences> {
   var isLoaded = false;
   List<dynamic> directors = [];
-  List<String> selected = [];
+  List<String> selectedDirectors = [];
 
   @override
   void initState() {
@@ -26,15 +31,14 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
   }
 
   void onPress(director) {
-    selected.add(director);
-    debugPrint('$selected');
+    selectedDirectors.add(director);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Film Fly'),
+        title: Text('${widget.selectedActors} , ${widget.selectedGenres}'),
       ),
       body: Visibility(
         visible: isLoaded,
@@ -62,6 +66,9 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
         IconButton(
           icon: const Icon(Icons.arrow_forward),
           onPressed: () {
+          
+            patchUser();
+
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -74,3 +81,7 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
     );
   }
 }
+
+
+// widget.selectedGenres, widget.selectedActors,
+//                 selectedDirectors
