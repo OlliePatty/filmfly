@@ -12,7 +12,7 @@ class GenrePreferences extends StatefulWidget {
 class _GenrePreferencesState extends State<GenrePreferences> {
   var isLoaded = false;
   List<dynamic> genres = [];
-  List<String> selected = [];
+  List<String> selectedGenres = [];
 
   @override
   void initState() {
@@ -26,8 +26,8 @@ class _GenrePreferencesState extends State<GenrePreferences> {
   }
 
   void onPress(genre) {
-    selected.add(genre);
-    debugPrint('$selected');
+    selectedGenres.add(genre);
+    debugPrint('$selectedGenres');
   }
 
   @override
@@ -42,35 +42,41 @@ class _GenrePreferencesState extends State<GenrePreferences> {
         replacement: const Center(
           child: CircularProgressIndicator(),
         ),
-        child: Wrap(
-          alignment: WrapAlignment.center,
-          verticalDirection: VerticalDirection.down,
-          spacing: 10,
-          children: genres.map(
-            (genre) {
-              return ElevatedButton(
-                onPressed: () {
-                  onPress(genre);
-                },
-                child: Text(genre),
-              );
-            },
-          ).toList(),
+        child: SingleChildScrollView(
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            verticalDirection: VerticalDirection.down,
+            spacing: 10,
+            children: genres.map(
+              (genres) {
+                return ElevatedButton(
+                  onPressed: () {
+                    onPress(genres);
+                  },
+                  child: Text(genres),
+                );
+              },
+            ).toList(),
+          ),
         ),
       ),
       persistentFooterButtons: <Widget>[
-        const Text('Next'),
-        IconButton(
-          icon: const Icon(Icons.arrow_forward),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ActorPrefernces(),
-              ),
-            );
-          },
-        ),
+        Container(
+          padding: const EdgeInsets.all(0),
+          child: TextButton.icon(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ActorPrefernces(selectedGenres: selectedGenres),
+                ),
+              );
+            },
+            style: TextButton.styleFrom(foregroundColor: Colors.black),
+            icon: const Text('Next'),
+            label: const Icon(Icons.arrow_forward),
+          ),
+        )
       ],
     );
   }
