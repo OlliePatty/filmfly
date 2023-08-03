@@ -12,6 +12,7 @@ class DirectorPreferences extends StatefulWidget {
 class _DirectorPreferencesState extends State<DirectorPreferences> {
   var isLoaded = false;
   List<dynamic> directors = [];
+  List<String> selected = [];
 
   @override
   void initState() {
@@ -22,6 +23,11 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
         directors = data['directors'];
       });
     });
+  }
+
+  void onPress(director) {
+    selected.add(director);
+    debugPrint('$selected');
   }
 
   @override
@@ -35,16 +41,20 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
         replacement: const Center(
           child: CircularProgressIndicator(),
         ),
-        child: ListView.builder(
-          itemCount: directors.length,
-          itemBuilder: (context, index) {
-            return ElevatedButton(
-              child: Text(directors[index]),
-              onPressed: () {
-                
-              },
-            );
-          },
+        child: Wrap(
+          alignment: WrapAlignment.center,
+          verticalDirection: VerticalDirection.down,
+          spacing: 10,
+          children: directors.map(
+            (director) {
+              return ElevatedButton(
+                onPressed: () {
+                  onPress(director);
+                },
+                child: Text(director),
+              );
+            },
+          ).toList(),
         ),
       ),
       persistentFooterButtons: <Widget>[
