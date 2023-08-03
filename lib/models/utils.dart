@@ -12,7 +12,7 @@ Future getData(endpoint) async {
   }
 }
 
-Future<http.Response> patchUser() {
+Future<http.Response> patchUser(endpoint, genres, actors, directors) {
   // print(endpoint);
   // print(genres);
   // print(actors);
