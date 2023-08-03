@@ -39,6 +39,7 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
           itemCount: actors.length,
           itemBuilder: (context, index) {
             return ElevatedButton(
+
               child: Text(actors[index]),
               onPressed: () {
                 
