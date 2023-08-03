@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:filmfly/genre_preferences_page.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   const SignUp({super.key});
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+    List<String> selected = [];
 
   @override
   Widget build(BuildContext context) {

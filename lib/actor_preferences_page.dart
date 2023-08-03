@@ -12,6 +12,7 @@ class ActorPrefernces extends StatefulWidget {
 class _ActorPreferncesState extends State<ActorPrefernces> {
   var isLoaded = false;
   List<dynamic> actors = [];
+  List<String> selected = [];
 
   @override
   void initState() {
@@ -22,6 +23,11 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
         actors = data['actors'];
       });
     });
+  }
+
+    void onPress(actor) {
+    selected.add(actor);
+    debugPrint('$selected');
   }
 
   @override
@@ -35,17 +41,21 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
         replacement: const Center(
           child: CircularProgressIndicator(),
         ),
-        child: ListView.builder(
-          itemCount: actors.length,
-          itemBuilder: (context, index) {
-            return ElevatedButton(
+        child: Wrap(
+          alignment: WrapAlignment.center,
+          verticalDirection: VerticalDirection.down,
+          spacing: 10,
+          children: actors.map(
+            (actor) {
+              return ElevatedButton(
 
-              child: Text(actors[index]),
-              onPressed: () {
-                
-              },
-            );
-          },
+                onPressed: () {
+                  onPress(actor);
+                },
+                child: Text(actor),
+              );
+            },
+          ).toList(),
         ),
       ),
       persistentFooterButtons: <Widget>[

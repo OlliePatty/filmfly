@@ -18,7 +18,7 @@ class _GenrePreferencesState extends State<GenrePreferences> {
 
   var isLoaded = false;
   List<dynamic> genres = [];
-  bool isButtonActive = true;
+  List<String> selected = [];
 
   @override
   void initState() {
@@ -29,6 +29,11 @@ class _GenrePreferencesState extends State<GenrePreferences> {
         genres = data['genres'];
       });
     });
+  }
+
+  void onPress(genre) {
+    selected.add(genre);
+    debugPrint('$selected');
   }
 
   @override
@@ -43,23 +48,16 @@ class _GenrePreferencesState extends State<GenrePreferences> {
         replacement: const Center(
           child: CircularProgressIndicator(),
         ),
-        child: Wrap(
-          alignment: WrapAlignment.spaceBetween,
-          verticalDirection: VerticalDirection.down,
-          spacing: 16,
-          children: genres.map((genre) {
+        child: ListView.builder(
+          itemCount: genres.length,
+          itemBuilder: (context, index) {
             return ElevatedButton(
+              child: Text(genres[index]),
               onPressed: () {
-                onPress(genre);
-                isButtonActive
-                    ? () {
-                        setState(() => isButtonActive = false);
-                      }
-                    : null;
+                
               },
-              child: Text(genre),
             );
-          }).toList(),
+          },
         ),
       ),
       persistentFooterButtons: <Widget>[

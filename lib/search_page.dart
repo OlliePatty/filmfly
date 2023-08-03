@@ -12,7 +12,6 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      automaticallyImplyLeading: false,
         title: Container(
           width: double.infinity,
           height: 40,
