@@ -1,6 +1,7 @@
+import 'package:filmfly/search_page.dart';
+import 'package:filmfly/watchlist_page.dart';
 import 'package:flutter/material.dart';
 import 'package:filmfly/home_page.dart';
-import 'package:filmfly/search_page.dart';
 import 'package:filmfly/profile_page.dart';
 
 class RootPage extends StatefulWidget {
@@ -14,7 +15,7 @@ class _RootPageState extends State<RootPage> {
   int currentPage = 0;
   List<Widget> pages = const [
     HomePage(),
-    SearchPage(),
+    Watchlist(),
     ProfilePage(),
   ];
 
@@ -24,11 +25,24 @@ class _RootPageState extends State<RootPage> {
       body: pages[currentPage],
       appBar: AppBar(
         title: const Text('Film Fly'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SearchPage(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.search), label: 'Search'),
+          NavigationDestination(icon: Icon(Icons.list), label: 'Watchlist'),
           NavigationDestination(
               icon: Icon(Icons.account_circle), label: 'Profile'),
         ],
@@ -39,7 +53,23 @@ class _RootPageState extends State<RootPage> {
         },
         selectedIndex: currentPage,
       ),
-      drawer: const Drawer(),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: const [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Film Fly',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 35, color: Colors.white),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

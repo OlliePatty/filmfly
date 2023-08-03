@@ -39,11 +39,15 @@ class _GenrePreferencesState extends State<GenrePreferences> {
         child: ListView.builder(
           itemCount: genres.length,
           itemBuilder: (context, index) {
-            return ElevatedButton(
-              child: Text(genres[index]),
-              onPressed: () {
-                
-              },
+            return Wrap(
+              children: [
+                ElevatedButton(
+                  child: Text(genres[index]),
+                  onPressed: () {
+                    
+                  },
+                )
+              ],
             );
           },
         ),

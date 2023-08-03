@@ -40,9 +40,7 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
           itemBuilder: (context, index) {
             return ElevatedButton(
               child: Text(directors[index]),
-              onPressed: () {
-                
-              },
+              onPressed: () {},
             );
           },
         ),
