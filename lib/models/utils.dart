@@ -37,25 +37,20 @@ Future postUser(name, username, email, password) async {
 }
 
 Future patchUser(userId, genres, actors, directors) async {
-  print(userId);
-  print(genres);
-  print(actors);
-  print(directors);
+  int userid = userId[0];
+  
+  final url = Uri.parse('https://film-fly.onrender.com/api/users/$userid');
+  final headers = {'Content-Type': 'application/json'};
+  final data = {"genres": genres, "actors": actors, "directors": directors};
 
-  final url = Uri.parse('https://film-fly.onrender.com/api/user/$userId');
-  Map<String, dynamic> preferences = {
-    "genre_scores": "{'romance' : 5, 'comedy' : 5, 'horror' : 5}",
-    "genre_pref": "{ pref : genres}",
-    "actor_pref": "{ pref : ['Brad Pitt', 'Idris Elba']}",
-    "actor_scores": "{'Brad Pitt' : 5, 'Idris Elba' : 5}",
-    "director_pref": "{ pref : ['Christopher Nolan']}",
-    "director_scores": "{'Christopher Nolan' : 5}",
-    "liked_movies": "{liked : []}",
-    "disliked_movies": "{ disliked : []}",
-    "watched_recently": "{ history : []}"
-  };
+  final response = await http.patch(url, headers: headers, body: jsonEncode(data));
 
-  final response = await http.put(url, body: preferences);
-  print(response.statusCode);
-  print(response.body);
+  if (response.statusCode == 201) {
+    print('PUT request successful');
+    print(response.body);
+  } else {
+    print('PUT request failed');
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+  }
 }

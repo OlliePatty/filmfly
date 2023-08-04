@@ -5,13 +5,12 @@ import 'package:filmfly/models/utils.dart';
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
-  
   @override
   State<SignUp> createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
-  int? userId;
+  List<int> userId = [];
 
   final _formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
@@ -84,6 +83,9 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               TextFormField(
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
                 controller: passwordController,
                 validator: (value) {
                   if (value == null || value.length < 5) {
@@ -105,7 +107,7 @@ class _SignUpState extends State<SignUp> {
                       postUser(nameController.text, usernameController.text,
                               emailController.text, passwordController.text)
                           .then((user) {
-                            userId = user[0]['user_id'];
+                            userId.add(user[0]['user_id']);
                             print('Sign up page: $userId');
                       });
                       ScaffoldMessenger.of(context).showSnackBar(

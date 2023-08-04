@@ -10,7 +10,7 @@ class DirectorPreferences extends StatefulWidget {
       required this.selectedActors})
       : super(key: key);
 
-  final int? userId;
+  final List<int>? userId;
   final List selectedGenres;
   final List selectedActors;
 

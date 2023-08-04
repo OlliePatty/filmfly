@@ -7,7 +7,7 @@ class ActorPrefernces extends StatefulWidget {
       {Key? key, this.userId, required this.selectedGenres})
       : super(key: key);
 
-  final int? userId;
+  final List<int>? userId;
   final List selectedGenres;
 
   @override

@@ -7,7 +7,7 @@ import 'package:filmfly/profile_page.dart';
 class RootPage extends StatefulWidget {
   const RootPage({Key? key, this.userId}) : super(key: key);
 
-  final int? userId;
+  final List<int>? userId;
 
   @override
   State<RootPage> createState() => _RootPageState();

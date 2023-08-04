@@ -6,7 +6,7 @@ class GenrePreferences extends StatefulWidget {
   const GenrePreferences({Key? key, this.userId})
   : super(key: key);
 
-  final int? userId;
+  final List<int>? userId;
 
   @override
   State<GenrePreferences> createState() => _GenrePreferencesState();

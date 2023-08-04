@@ -7,7 +7,7 @@ class ProfilePage extends StatefulWidget {
       {Key? key, this.userId})
       : super(key: key);
 
-      final int? userId;
+      final List<int>? userId;
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
