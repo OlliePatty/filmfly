@@ -12,21 +12,19 @@ Future getData(endpoint) async {
   }
 }
 
-Future postUser(name, username, email, password) async {
+Future postUser(String name, String username, String email, String password) async {
   final url = Uri.parse('https://film-fly.onrender.com/api/users');
   final response = await http.post(
     url,
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(
-      <String, String>{
-        "name": name,
-        "username": username,
-        "email_address": email,
-        "password": password
-      },
-    ),
+    body: jsonEncode(<String, String>{
+      "name": name,
+      "username": username,
+      "email_address": email,
+      "password": password
+    }),
   );
   final data = jsonDecode(response.body);
   if (response.statusCode == 201) {
@@ -35,6 +33,7 @@ Future postUser(name, username, email, password) async {
     throw Exception('Failed to load');
   }
 }
+
 
 Future patchUser(userId, genres, actors, directors) async {
   print(userId);
