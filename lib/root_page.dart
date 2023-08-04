@@ -16,16 +16,19 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
   List<Widget> _pages() => [
-    const HomePage(),
-    const Watchlist(),
-    ProfilePage(userId: widget.userId),
-  ];
+        const HomePage(),
+        const Watchlist(),
+        ProfilePage(userId: widget.userId),
+      ];
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = _pages();
     return Scaffold(
-      body: pages[currentPage],
+      body: IndexedStack(
+        index: currentPage,
+        children: pages,
+      ),
       appBar: AppBar(
         title: const Text('Film Fly'),
         actions: [
