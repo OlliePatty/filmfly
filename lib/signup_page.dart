@@ -101,7 +101,7 @@ class _SignUpState extends State<SignUp> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      postUser(nameController.text, usernameController.text, emailController.text, passwordController.text);
+                      postUser(nameController.text, usernameController.text, emailController.text, passwordController.text).then((value) => print(value),);
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Creating your account...')));
                       Navigator.pushReplacement(

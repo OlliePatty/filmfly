@@ -27,9 +27,10 @@ Future<http.Response> patchUser() {
   );
 }
 
-Future<http.Response> postUser(String name, String username, String email, String password) {
-  return http.post(
-    Uri.parse('https://film-fly.onrender.com/api/users'),
+Future postUser(String name, String username, String email, String password) async {
+  final url = Uri.parse('https://film-fly.onrender.com/api/users');
+  final response = await http.post(
+    url,
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -40,4 +41,10 @@ Future<http.Response> postUser(String name, String username, String email, Strin
       "password": password
     }),
   );
+  final data = jsonDecode(response.body);
+  if (response.statusCode == 201) {
+    return data;
+  } else {
+    throw Exception('Failed to load');
+  }
 }
