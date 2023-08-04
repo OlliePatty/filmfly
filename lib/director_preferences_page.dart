@@ -66,7 +66,7 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
         IconButton(
           icon: const Icon(Icons.arrow_forward),
           onPressed: () {
-          
+            
             patchUser();
 
             Navigator.push(
