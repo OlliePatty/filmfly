@@ -31,6 +31,7 @@ class _LoginState extends State<Login> {
         title: const Text('Film Fly'),
       ),
       body: Form(
+        key: _formKey,
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
