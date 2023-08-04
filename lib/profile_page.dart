@@ -1,5 +1,6 @@
 import 'package:filmfly/genre_preferences_page.dart';
 import 'package:filmfly/main.dart';
+import 'package:filmfly/models/utils.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -24,6 +25,8 @@ class _ProfilePageState extends State<ProfilePage> {
             ElevatedButton(
               child: const Text('Reset Preferences'),
               onPressed: () {
+                print(widget.userId);
+                patchUser(widget.userId, [], [], []);
                 Navigator.push(
                   context,
                   MaterialPageRoute(

@@ -22,7 +22,6 @@ class _GenrePreferencesState extends State<GenrePreferences> {
     super.initState();
     getData('/movies/genres').then((data) {
       setState(() {
-        print('Genre page: ${widget.userId}');
         isLoaded = true;
         genres = data['genres'];
       });

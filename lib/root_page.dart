@@ -15,14 +15,15 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
-  List<Widget> pages = const [
-    HomePage(),
-    Watchlist(),
-    ProfilePage(),
+  List<Widget> _pages() => [
+    const HomePage(),
+    const Watchlist(),
+    ProfilePage(userId: widget.userId),
   ];
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = _pages();
     return Scaffold(
       body: pages[currentPage],
       appBar: AppBar(
@@ -42,6 +43,7 @@ class _RootPageState extends State<RootPage> {
         ],
       ),
       bottomNavigationBar: NavigationBar(
+        selectedIndex: currentPage,
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
           NavigationDestination(icon: Icon(Icons.list), label: 'Watchlist'),
@@ -53,7 +55,6 @@ class _RootPageState extends State<RootPage> {
             currentPage = index;
           });
         },
-        selectedIndex: currentPage,
       ),
       drawer: Drawer(
         child: ListView(
