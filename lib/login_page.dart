@@ -1,8 +1,28 @@
 import 'package:filmfly/root_page.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final _formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
+  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    usernameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +37,27 @@ class Login extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
+                controller: usernameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a username';
+                  }
+                  return null;
+                },
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.person),
+                  hintText: 'What is your username?',
+                  labelText: 'Username',
+                ),
+              ),
+              TextFormField(
+                controller: emailController,
+                validator: (value) {
+                  if (value == null || !value.contains('@')) {
+                    return 'Please enter a valid email address';
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration(
                   icon: Icon(Icons.person),
                   hintText: 'What is your email?',
@@ -24,10 +65,20 @@ class Login extends StatelessWidget {
                 ),
               ),
               TextFormField(
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                controller: passwordController,
+                validator: (value) {
+                  if (value == null || value.length < 5) {
+                    return 'Please enter a password of at least 5 characters';
+                  }
+                  return null;
+                },
                 decoration: const InputDecoration(
                   icon: Icon(Icons.person),
-                  hintText: 'What is your username?',
-                  labelText: 'Username',
+                  hintText: 'What is your passowrd?',
+                  labelText: 'Password',
                 ),
               ),
               Padding(
