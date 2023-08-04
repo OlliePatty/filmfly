@@ -3,7 +3,10 @@ import 'package:filmfly/models/utils.dart';
 import 'package:flutter/material.dart';
 
 class GenrePreferences extends StatefulWidget {
-  const GenrePreferences({super.key});
+  const GenrePreferences({Key? key, this.userId})
+  : super(key: key);
+
+  final int? userId;
 
   @override
   State<GenrePreferences> createState() => _GenrePreferencesState();
@@ -19,6 +22,7 @@ class _GenrePreferencesState extends State<GenrePreferences> {
     super.initState();
     getData('/movies/genres').then((data) {
       setState(() {
+        print(widget.userId);
         isLoaded = true;
         genres = data['genres'];
       });
@@ -26,8 +30,10 @@ class _GenrePreferencesState extends State<GenrePreferences> {
   }
 
   void onPress(genre) {
-    selectedGenres.add(genre);
-    debugPrint('$selectedGenres');
+    if(!selectedGenres.contains("'$genre'")){
+    selectedGenres.add("'$genre'");
+    }
+    print(selectedGenres);
   }
 
   @override
@@ -52,6 +58,7 @@ class _GenrePreferencesState extends State<GenrePreferences> {
                 return ElevatedButton(
                   onPressed: () {
                     onPress(genres);
+                    print(widget.userId);
                   },
                   child: Text(genres),
                 );
@@ -68,7 +75,7 @@ class _GenrePreferencesState extends State<GenrePreferences> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ActorPrefernces(selectedGenres: selectedGenres),
+                  builder: (context) => ActorPrefernces(userId: widget.userId, selectedGenres: selectedGenres),
                 ),
               );
             },

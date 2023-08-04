@@ -3,7 +3,11 @@ import 'package:filmfly/main.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  const ProfilePage(
+      {Key? key, this.userId})
+      : super(key: key);
+
+      final int? userId;
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -23,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const GenrePreferences(),
+                    builder: (context) => GenrePreferences(userId: widget.userId),
                   ),
                 );
               },

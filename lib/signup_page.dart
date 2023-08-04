@@ -11,6 +11,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   List<String> selected = [];
+  int userId = 0;
 
   final _formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
@@ -101,13 +102,22 @@ class _SignUpState extends State<SignUp> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      postUser(nameController.text, usernameController.text, emailController.text, passwordController.text).then((value) => print(value),);
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text('Creating your account...')));
+                      postUser(nameController.text, usernameController.text,
+                              emailController.text, passwordController.text)
+                          .then((user) {
+                            userId = user[0]['user_id'];
+                            print(userId);
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Creating your account...'),
+                        ),
+                      );
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const GenrePreferences(),
+                          builder: (context) =>
+                              GenrePreferences(userId: userId),
                         ),
                       );
                     }
