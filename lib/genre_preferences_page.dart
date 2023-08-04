@@ -22,7 +22,7 @@ class _GenrePreferencesState extends State<GenrePreferences> {
     super.initState();
     getData('/movies/genres').then((data) {
       setState(() {
-        print(widget.userId);
+        print('Genre page: ${widget.userId}');
         isLoaded = true;
         genres = data['genres'];
       });
@@ -58,7 +58,6 @@ class _GenrePreferencesState extends State<GenrePreferences> {
                 return ElevatedButton(
                   onPressed: () {
                     onPress(genres);
-                    print(widget.userId);
                   },
                   child: Text(genres),
                 );
