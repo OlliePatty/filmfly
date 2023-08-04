@@ -3,10 +3,10 @@ import 'package:filmfly/models/utils.dart';
 import 'package:flutter/material.dart';
 
 class GenrePreferences extends StatefulWidget {
-  const GenrePreferences({Key? key, required this.userId})
+  const GenrePreferences({Key? key, this.userId})
   : super(key: key);
 
-  final String userId;
+  final int? userId;
 
   @override
   State<GenrePreferences> createState() => _GenrePreferencesState();
@@ -22,6 +22,7 @@ class _GenrePreferencesState extends State<GenrePreferences> {
     super.initState();
     getData('/movies/genres').then((data) {
       setState(() {
+        print(widget.userId);
         isLoaded = true;
         genres = data['genres'];
       });
@@ -57,6 +58,7 @@ class _GenrePreferencesState extends State<GenrePreferences> {
                 return ElevatedButton(
                   onPressed: () {
                     onPress(genres);
+                    print(widget.userId);
                   },
                   child: Text(genres),
                 );

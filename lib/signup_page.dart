@@ -11,7 +11,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   List<String> selected = [];
-  String userId = '';
+  int userId = 0;
 
   final _formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
@@ -105,7 +105,8 @@ class _SignUpState extends State<SignUp> {
                       postUser(nameController.text, usernameController.text,
                               emailController.text, passwordController.text)
                           .then((user) {
-                        userId = user[0]['user_id'];
+                            userId = user[0]['user_id'];
+                            print(userId);
                       });
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(

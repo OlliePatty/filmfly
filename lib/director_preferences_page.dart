@@ -4,10 +4,13 @@ import 'package:filmfly/models/utils.dart';
 
 class DirectorPreferences extends StatefulWidget {
   const DirectorPreferences(
-      {Key? key, required this.userId, required this.selectedGenres, required this.selectedActors})
+      {Key? key,
+      this.userId,
+      required this.selectedGenres,
+      required this.selectedActors})
       : super(key: key);
 
-  final String userId;
+  final int? userId;
   final List selectedGenres;
   final List selectedActors;
 
@@ -32,8 +35,8 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
   }
 
   void onPress(director) {
-    if(!selectedDirectors.contains("'$director'")){
-    selectedDirectors.add("'$director'");
+    if (!selectedDirectors.contains("'$director'")) {
+      selectedDirectors.add("'$director'");
     }
     print('$selectedDirectors');
   }
@@ -72,11 +75,12 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
           padding: const EdgeInsets.all(0),
           child: TextButton.icon(
             onPressed: () {
-              patchUser(widget.userId, widget.selectedGenres, widget.selectedActors, selectedDirectors);
+              patchUser(widget.userId, widget.selectedGenres,
+                  widget.selectedActors, selectedDirectors);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const RootPage(),
+                  builder: (context) => RootPage(userId: widget.userId),
                 ),
               );
             },

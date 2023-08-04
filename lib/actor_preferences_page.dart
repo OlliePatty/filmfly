@@ -3,10 +3,11 @@ import 'package:filmfly/models/utils.dart';
 import 'package:filmfly/director_preferences_page.dart';
 
 class ActorPrefernces extends StatefulWidget {
-  const ActorPrefernces({Key? key, required this.userId, required this.selectedGenres})
-  : super(key: key);
+  const ActorPrefernces(
+      {Key? key, this.userId, required this.selectedGenres})
+      : super(key: key);
 
-  final String userId;
+  final int? userId;
   final List selectedGenres;
 
   @override
@@ -30,8 +31,8 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
   }
 
   void onPress(actor) {
-    if(!selectedActors.contains("'$actor'")){
-    selectedActors.add("'$actor'");
+    if (!selectedActors.contains("'$actor'")) {
+      selectedActors.add("'$actor'");
     }
     print('$selectedActors');
   }
@@ -73,7 +74,10 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DirectorPreferences(userId: widget.userId, selectedGenres: widget.selectedGenres, selectedActors: selectedActors),
+                  builder: (context) => DirectorPreferences(
+                      userId: widget.userId,
+                      selectedGenres: widget.selectedGenres,
+                      selectedActors: selectedActors),
                 ),
               );
             },
