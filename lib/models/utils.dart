@@ -27,17 +27,24 @@ Future<http.Response> patchUser() {
   );
 }
 
-Future<http.Response> postUser() {
-  return http.post(
-    Uri.parse('https://film-fly.onrender.com/api/users'),
+Future postUser(String name, String username, String email, String password) async {
+  final url = Uri.parse('https://film-fly.onrender.com/api/users');
+  final response = await http.post(
+    url,
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      "name": "Alwin",
-      "username": "Milesperalwin",
-      "email_address": "email.com",
-      "password": "password123"
+      "name": name,
+      "username": username,
+      "email_address": email,
+      "password": password
     }),
   );
+  final data = jsonDecode(response.body);
+  if (response.statusCode == 201) {
+    return data;
+  } else {
+    throw Exception('Failed to load');
+  }
 }
