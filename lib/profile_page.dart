@@ -1,5 +1,5 @@
-import 'package:filmfly/genre_preferences_page.dart';
 import 'package:filmfly/main.dart';
+import 'package:filmfly/search_page.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -23,7 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const GenrePreferences(),
+                    builder: (context) => const SearchPage(),
                   ),
                 );
               },
