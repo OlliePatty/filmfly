@@ -42,16 +42,14 @@ Future patchUser(userId, genres, actors, directors) async {
   final url = Uri.parse('https://film-fly.onrender.com/api/users/$userid');
   final headers = {'Content-Type': 'application/json'};
   final data = {"genres": genres, "actors": actors, "directors": directors};
-
   final response = await http.patch(url, headers: headers, body: jsonEncode(data));
 
   if (response.statusCode == 201) {
-    print('PUT request successful');
+    print('PATCH request successful');
     print(response.body);
   } else {
-    print('PUT request failed');
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
+    print('PATCH request failed');
+    throw Exception('Failed PATCH request');
   }
 }
 

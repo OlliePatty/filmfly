@@ -9,7 +9,6 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  var isLoaded = false;
   List<dynamic> searchResults = [];
 
   void updateList(value) {
@@ -33,9 +32,9 @@ class _SearchPageState extends State<SearchPage> {
           ),
           child: Center(
             child: TextField(
-             onChanged: (value) {
-               updateList(value);
-             },
+              onChanged: (value) {
+                updateList(value);
+              },
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.search),
                 hintText: 'Search...',
@@ -63,17 +62,17 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                         )
                       : null,
-                  subtitle:
-                      searchResults[index]['show']['premiered'] != null
-                          ? Text(
-                              '${searchResults[index]['show']['premiered'].substring(0, 4)}',
-                            )
-                          : null,
-                  trailing: searchResults[index]['show']['rating']['average'] != null
+                  subtitle: searchResults[index]['show']['premiered'] != null
                       ? Text(
-                          '${searchResults[index]['show']['rating']['average']}',
+                          '${searchResults[index]['show']['premiered'].substring(0, 4)}',
                         )
                       : null,
+                  trailing:
+                      searchResults[index]['show']['rating']['average'] != null
+                          ? Text(
+                              '${searchResults[index]['show']['rating']['average']}',
+                            )
+                          : null,
                   leading: searchResults[index]['show']['image'] != null
                       ? Image.network(
                           '${searchResults[index]['show']['image']['medium']}')

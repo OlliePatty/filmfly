@@ -1,3 +1,4 @@
+import 'package:filmfly/models/utils.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -8,22 +9,39 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool loading = true;
+  List<dynamic> recommendations = [];
+  int index = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    getSearchResults('friends').then((data) {
+      print(data[0]['show']['image']['medium']);
+      setState(() {
+        loading = false;
+        recommendations = data;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Align(
-        alignment: Alignment.topCenter,
-        child: SizedBox(
-          height: 500,
-          width: 500,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Image.network(
-              'https://assets-prd.ignimgs.com/2022/07/21/oppenheimer-poster-1658411601593.jpeg',
+      body: loading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(50),
+                  child: Image.network(
+                      '${recommendations[0]['show']['image']['medium']}'),
+                ),
+              ],
             ),
-          ),
-        ),
-      ),
     );
   }
 }
