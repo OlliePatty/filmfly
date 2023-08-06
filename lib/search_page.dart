@@ -1,3 +1,4 @@
+import 'package:filmfly/models/utils.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
@@ -8,6 +9,17 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  var isLoaded = false;
+  List<dynamic> searchResults = [];
+
+  void updateList(value) {
+    setState(() {
+      getSearchResults(value).then((data) {
+        searchResults = data;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,9 +31,12 @@ class _SearchPageState extends State<SearchPage> {
             color: Colors.white,
             borderRadius: BorderRadius.circular(5),
           ),
-          child: const Center(
+          child: Center(
             child: TextField(
-              decoration: InputDecoration(
+             onChanged: (value) {
+               updateList(value);
+             },
+              decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.search),
                 hintText: 'Search...',
                 border: InputBorder.none,
@@ -29,6 +44,45 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
         ),
+      ),
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: searchResults.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: searchResults[index]['show']['name'] != null
+                      ? Text(
+                          '${searchResults[index]['show']['name']}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      : null,
+                  subtitle:
+                      searchResults[index]['show']['premiered'] != null
+                          ? Text(
+                              '${searchResults[index]['show']['premiered'].substring(0, 4)}',
+                            )
+                          : null,
+                  trailing: searchResults[index]['show']['rating']['average'] != null
+                      ? Text(
+                          '${searchResults[index]['show']['rating']['average']}',
+                        )
+                      : null,
+                  leading: searchResults[index]['show']['image'] != null
+                      ? Image.network(
+                          '${searchResults[index]['show']['image']['medium']}')
+                      : null,
+                );
+              },
+            ),
+          )
+        ],
       ),
     );
   }

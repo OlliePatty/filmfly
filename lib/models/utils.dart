@@ -54,3 +54,16 @@ Future patchUser(userId, genres, actors, directors) async {
     print('Response body: ${response.body}');
   }
 }
+
+
+Future getSearchResults(searchQuery) async {
+  final url = Uri.parse('https://api.tvmaze.com/search/shows?q=$searchQuery');
+  final response = await http.get(url);
+  final data = jsonDecode(response.body);
+
+  if (response.statusCode == 200) {
+    return data;
+  } else {
+    throw Exception('Failed to load');
+  }
+}
