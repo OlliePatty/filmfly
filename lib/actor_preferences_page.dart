@@ -3,11 +3,10 @@ import 'package:filmfly/models/utils.dart';
 import 'package:filmfly/director_preferences_page.dart';
 
 class ActorPrefernces extends StatefulWidget {
-  const ActorPrefernces(
-      {Key? key, this.userId, required this.selectedGenres})
+  const ActorPrefernces({Key? key, this.userId, required this.selectedGenres})
       : super(key: key);
 
-  final int? userId;
+  final List<int>? userId;
   final List selectedGenres;
 
   @override
@@ -15,7 +14,7 @@ class ActorPrefernces extends StatefulWidget {
 }
 
 class _ActorPreferncesState extends State<ActorPrefernces> {
-  var isLoaded = false;
+  bool loading = true;
   List<dynamic> actors = [];
   List<String> selectedActors = [];
 
@@ -24,7 +23,7 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
     super.initState();
     getData('/movies/actors').then((data) {
       setState(() {
-        isLoaded = true;
+        loading = false;
         actors = data['actors'];
       });
     });
@@ -34,7 +33,7 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
     if (!selectedActors.contains("'$actor'")) {
       selectedActors.add("'$actor'");
     }
-    print('$selectedActors');
+    print(selectedActors);
   }
 
   @override
@@ -43,29 +42,27 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
       appBar: AppBar(
         title: const Text('Film Fly'),
       ),
-      body: Visibility(
-        visible: isLoaded,
-        replacement: const Center(
-          child: CircularProgressIndicator(),
-        ),
-        child: SingleChildScrollView(
-          child: Wrap(
-            alignment: WrapAlignment.center,
-            verticalDirection: VerticalDirection.down,
-            spacing: 10,
-            children: actors.map(
-              (actor) {
-                return ElevatedButton(
-                  onPressed: () {
-                    onPress(actor);
+      body: loading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : SingleChildScrollView(
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                verticalDirection: VerticalDirection.down,
+                spacing: 10,
+                children: actors.map(
+                  (actor) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        onPress(actor);
+                      },
+                      child: Text(actor),
+                    );
                   },
-                  child: Text(actor),
-                );
-              },
-            ).toList(),
-          ),
-        ),
-      ),
+                ).toList(),
+              ),
+            ),
       persistentFooterButtons: <Widget>[
         Container(
           padding: const EdgeInsets.all(0),

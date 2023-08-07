@@ -3,17 +3,16 @@ import 'package:filmfly/models/utils.dart';
 import 'package:flutter/material.dart';
 
 class GenrePreferences extends StatefulWidget {
-  const GenrePreferences({Key? key, this.userId})
-  : super(key: key);
+  const GenrePreferences({Key? key, this.userId}) : super(key: key);
 
-  final int? userId;
+  final List<int>? userId;
 
   @override
   State<GenrePreferences> createState() => _GenrePreferencesState();
 }
 
 class _GenrePreferencesState extends State<GenrePreferences> {
-  var isLoaded = false;
+  bool loading = true;
   List<dynamic> genres = [];
   List<String> selectedGenres = [];
 
@@ -22,16 +21,15 @@ class _GenrePreferencesState extends State<GenrePreferences> {
     super.initState();
     getData('/movies/genres').then((data) {
       setState(() {
-        print(widget.userId);
-        isLoaded = true;
+        loading = false;
         genres = data['genres'];
       });
     });
   }
 
   void onPress(genre) {
-    if(!selectedGenres.contains("'$genre'")){
-    selectedGenres.add("'$genre'");
+    if (!selectedGenres.contains("'$genre'")) {
+      selectedGenres.add("'$genre'");
     }
     print(selectedGenres);
   }
@@ -43,30 +41,25 @@ class _GenrePreferencesState extends State<GenrePreferences> {
         title: const Text('Film Fly'),
         automaticallyImplyLeading: false,
       ),
-      body: Visibility(
-        visible: isLoaded,
-        replacement: const Center(
-          child: CircularProgressIndicator(),
-        ),
-        child: SingleChildScrollView(
-          child: Wrap(
-            alignment: WrapAlignment.center,
-            verticalDirection: VerticalDirection.down,
-            spacing: 10,
-            children: genres.map(
-              (genres) {
-                return ElevatedButton(
-                  onPressed: () {
-                    onPress(genres);
-                    print(widget.userId);
-                  },
-                  child: Text(genres),
-                );
-              },
-            ).toList(),
-          ),
-        ),
-      ),
+      body: loading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : Wrap(
+              alignment: WrapAlignment.center,
+              verticalDirection: VerticalDirection.down,
+              spacing: 10,
+              children: genres.map(
+                (genres) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      onPress(genres);
+                    },
+                    child: Text(genres),
+                  );
+                },
+              ).toList(),
+            ),
       persistentFooterButtons: <Widget>[
         Container(
           padding: const EdgeInsets.all(0),
@@ -75,7 +68,8 @@ class _GenrePreferencesState extends State<GenrePreferences> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ActorPrefernces(userId: widget.userId, selectedGenres: selectedGenres),
+                  builder: (context) => ActorPrefernces(
+                      userId: widget.userId, selectedGenres: selectedGenres),
                 ),
               );
             },

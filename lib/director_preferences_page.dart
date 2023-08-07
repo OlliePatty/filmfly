@@ -10,7 +10,7 @@ class DirectorPreferences extends StatefulWidget {
       required this.selectedActors})
       : super(key: key);
 
-  final int? userId;
+  final List<int>? userId;
   final List selectedGenres;
   final List selectedActors;
 
@@ -19,7 +19,7 @@ class DirectorPreferences extends StatefulWidget {
 }
 
 class _DirectorPreferencesState extends State<DirectorPreferences> {
-  var isLoaded = false;
+  bool loading = true;
   List<dynamic> directors = [];
   List<String> selectedDirectors = [];
 
@@ -28,7 +28,7 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
     super.initState();
     getData('/movies/directors').then((data) {
       setState(() {
-        isLoaded = true;
+        loading = false;
         directors = data['directors'];
       });
     });
@@ -38,7 +38,7 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
     if (!selectedDirectors.contains("'$director'")) {
       selectedDirectors.add("'$director'");
     }
-    print('$selectedDirectors');
+    print(selectedDirectors);
   }
 
   @override
@@ -47,29 +47,27 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
       appBar: AppBar(
         title: const Text('Film Fly'),
       ),
-      body: Visibility(
-        visible: isLoaded,
-        replacement: const Center(
-          child: CircularProgressIndicator(),
-        ),
-        child: SingleChildScrollView(
-          child: Wrap(
-            alignment: WrapAlignment.center,
-            verticalDirection: VerticalDirection.down,
-            spacing: 10,
-            children: directors.map(
-              (director) {
-                return ElevatedButton(
-                  onPressed: () {
-                    onPress(director);
+      body: loading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : SingleChildScrollView(
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                verticalDirection: VerticalDirection.down,
+                spacing: 10,
+                children: directors.map(
+                  (director) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        onPress(director);
+                      },
+                      child: Text(director),
+                    );
                   },
-                  child: Text(director),
-                );
-              },
-            ).toList(),
-          ),
-        ),
-      ),
+                ).toList(),
+              ),
+            ),
       persistentFooterButtons: <Widget>[
         Container(
           padding: const EdgeInsets.all(0),
