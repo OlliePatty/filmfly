@@ -15,6 +15,7 @@ class _GenrePreferencesState extends State<GenrePreferences> {
   bool loading = true;
   List<dynamic> genres = [];
   List<String> selectedGenres = [];
+  bool _hasBeenPressed = false;
 
   @override
   void initState() {
@@ -50,11 +51,19 @@ class _GenrePreferencesState extends State<GenrePreferences> {
               verticalDirection: VerticalDirection.down,
               spacing: 10,
               children: genres.map(
-                (genres) {
+                (genres) {              
                   return ElevatedButton(
                     onPressed: () {
                       onPress(genres);
                     },
+                    style: ButtonStyle(overlayColor:
+                        MaterialStateProperty.resolveWith<Color?>(
+                            (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.redAccent;
+                      }
+                      return null;
+                    })),
                     child: Text(genres),
                   );
                 },
