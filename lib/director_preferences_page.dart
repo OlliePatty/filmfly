@@ -75,7 +75,7 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
           padding: const EdgeInsets.all(0),
           child: TextButton.icon(
             onPressed: () {
-              patchUser(widget.userId, widget.selectedGenres,
+              patchUser( widget.selectedGenres,
                   widget.selectedActors, selectedDirectors);
               Navigator.push(
                 context,

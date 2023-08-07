@@ -71,10 +71,14 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
           padding: const EdgeInsets.all(0),
           child: TextButton.icon(
             onPressed: () {
+              
               Navigator.push(
                 context,
                 MaterialPageRoute(
+                  
+
                   builder: (context) => DirectorPreferences(
+                    
                       userId: widget.userId,
                       selectedGenres: widget.selectedGenres,
                       selectedActors: selectedActors),
