@@ -70,9 +70,9 @@ class _SearchPageState extends State<SearchPage> {
                   trailing:
                       searchResults[index]['show']['rating']['average'] != null
                           ? Text(
-                              '${searchResults[index]['show']['rating']['average']}',
+                              '${searchResults[index]['show']['rating']['average']}/10',
                             )
-                          : null,
+                          : const Text('N/A'),
                   leading: searchResults[index]['show']['image'] != null
                       ? Image.network(
                           '${searchResults[index]['show']['image']['medium']}')

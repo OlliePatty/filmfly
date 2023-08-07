@@ -38,7 +38,7 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
     if (!selectedDirectors.contains("'$director'")) {
       selectedDirectors.add("'$director'");
     }
-    print('$selectedDirectors');
+    print(selectedDirectors);
   }
 
   @override

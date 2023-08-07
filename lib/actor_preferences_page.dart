@@ -33,7 +33,7 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
     if (!selectedActors.contains("'$actor'")) {
       selectedActors.add("'$actor'");
     }
-    print('$selectedActors');
+    print(selectedActors);
   }
 
   @override

@@ -16,7 +16,7 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
   List<Widget> _pages() => [
-        const HomePage(),
+        HomePage(userId: widget.userId),
         const Watchlist(),
         ProfilePage(userId: widget.userId),
       ];
