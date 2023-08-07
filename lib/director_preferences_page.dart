@@ -26,7 +26,7 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
   @override
   void initState() {
     super.initState();
-    getData('/movies/directors').then((data) {
+    getPreferences('/movies/directors').then((data) {
       setState(() {
         loading = false;
         directors = data['directors'];
@@ -35,8 +35,8 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
   }
 
   void onPress(director) {
-    if (!selectedDirectors.contains("'$director'")) {
-      selectedDirectors.add("'$director'");
+    if (!selectedDirectors.contains("$director")) {
+      selectedDirectors.add("$director");
     }
     print(selectedDirectors);
   }

@@ -19,7 +19,7 @@ class _GenrePreferencesState extends State<GenrePreferences> {
   @override
   void initState() {
     super.initState();
-    getData('/movies/genres').then((data) {
+    getPreferences('/movies/genres').then((data) {
       setState(() {
         loading = false;
         genres = data['genres'];
@@ -28,8 +28,8 @@ class _GenrePreferencesState extends State<GenrePreferences> {
   }
 
   void onPress(genre) {
-    if (!selectedGenres.contains("'$genre'")) {
-      selectedGenres.add("'$genre'");
+    if (!selectedGenres.contains("$genre")) {
+      selectedGenres.add("$genre");
     }
     print(selectedGenres);
   }
