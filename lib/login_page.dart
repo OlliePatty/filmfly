@@ -1,5 +1,6 @@
 import 'package:filmfly/root_page.dart';
 import 'package:flutter/material.dart';
+import 'package:filmfly/models/utils.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -24,6 +25,29 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
+  dynamic username;
+  String? email;
+  String? password;
+  bool isValidUser = false;
+
+  void updateUsername(dynamic value) {
+    setState(() {
+      username = value;
+    });
+  }
+
+  void updateEmail(dynamic value) {
+    setState(() {
+      email = value;
+    });
+  }
+
+  void updatePassword(dynamic value) {
+    setState(() {
+      password = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +69,9 @@ class _LoginState extends State<Login> {
                   }
                   return null;
                 },
+                onChanged: (value) {
+                  updateUsername(value);
+                },
                 decoration: const InputDecoration(
                   icon: Icon(Icons.person),
                   hintText: 'What is your username?',
@@ -58,6 +85,9 @@ class _LoginState extends State<Login> {
                     return 'Please enter a valid email address';
                   }
                   return null;
+                },
+                onChanged: (value) {
+                  updateEmail(value);
                 },
                 decoration: const InputDecoration(
                   icon: Icon(Icons.person),
@@ -76,9 +106,12 @@ class _LoginState extends State<Login> {
                   }
                   return null;
                 },
+                onChanged: (value) {
+                  updatePassword(value);
+                },
                 decoration: const InputDecoration(
                   icon: Icon(Icons.person),
-                  hintText: 'What is your passowrd?',
+                  hintText: 'What is your password?',
                   labelText: 'Password',
                 ),
               ),
@@ -86,12 +119,22 @@ class _LoginState extends State<Login> {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const RootPage(),
-                      ),
-                    );
+                    getUsers().then((value) {
+                      for (var i = 0; i < value.length; i++) {
+                        if (username == value[i]['username'] &&
+                            email == value[i]['email_address'] &&
+                            password == value[i]['password']) {
+
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RootPage(userId: [value[i]['user_id']]),
+                              ));
+                        } else {
+                          print('not valid user');
+                        }
+                      }
+                    });
                   },
                   child: const Text('Login'),
                 ),
