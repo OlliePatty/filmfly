@@ -13,17 +13,23 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool loading = true;
   List<dynamic> recommendations = [];
+  List<dynamic> results = [];
   int index = 0;
 
   @override
   void initState() {
     super.initState();
-
-
-    getSearchResults('top+gear').then((data) {
+    getRecommendations(widget.userId).then((data) {
       setState(() {
-        loading = false;
         recommendations = data;
+      });
+    }).then((value) {
+      print(recommendations);
+      getSearchResults(recommendations[index]).then((data) {
+        setState(() {
+        loading = false;
+        results = data;
+        });
       });
     });
   }
@@ -41,7 +47,6 @@ class _HomePageState extends State<HomePage> {
               index ++;
             });
           },
-
             child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: ClipRRect(
@@ -50,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(
-                            '${recommendations[index]['show']['image']['medium']}'),
+                            '${results[0]['show']['image']['medium']}'),
                         fit: BoxFit.fill,
                         alignment: const Alignment(-0.3, 0),
                       ),
@@ -72,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                             Row(
                               children: [
                                 Text(
-                                  '${recommendations[index]['show']['name']}',
+                                  '${results[0]['show']['name']}',
                                   style: const TextStyle(
                                     fontSize: 32,
                                     color: Colors.white,
@@ -83,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                                   width: 16,
                                 ),
                                 Text(
-                                  '${recommendations[index]['show']['premiered'].substring(0, 4)}',
+                                  '${results[0]['show']['premiered'].substring(0, 4)}',
                                   style: const TextStyle(
                                     fontSize: 32,
                                     color: Colors.white,
@@ -100,19 +105,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
           ),
-            
     );
   }
 }
 
-
-// Row(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 Padding(
-//                   padding: const EdgeInsets.all(50),
-//                   child: Image.network(
-//                       '${recommendations[0]['show']['image']['medium']}'),
-//                 ),
-//               ],
-//             ),
