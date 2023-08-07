@@ -17,7 +17,7 @@ class _RootPageState extends State<RootPage> {
   int currentPage = 0;
   List<Widget> _pages() => [
         HomePage(userId: widget.userId),
-        const Watchlist(),
+        Watchlist(userId: widget.userId),
         ProfilePage(userId: widget.userId),
       ];
 

@@ -21,7 +21,7 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
   @override
   void initState() {
     super.initState();
-    getData('/movies/actors').then((data) {
+    getPreferences('/movies/actors').then((data) {
       setState(() {
         loading = false;
         actors = data['actors'];
@@ -30,8 +30,8 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
   }
 
   void onPress(actor) {
-    if (!selectedActors.contains("'$actor'")) {
-      selectedActors.add("'$actor'");
+    if (!selectedActors.contains("$actor")) {
+      selectedActors.add("$actor");
     }
     print(selectedActors);
   }

@@ -1,12 +1,12 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-Future getData(endpoint) async {
+Future getPreferences(endpoint) async {
   final url = Uri.parse('https://film-fly.onrender.com/api$endpoint');
   final response = await http.get(url);
-  final data = jsonDecode(response.body);
+  final preferences = jsonDecode(response.body);
   if (response.statusCode == 200) {
-    return data;
+    return preferences;
   } else {
     throw Exception('Failed to load');
   }
@@ -54,10 +54,22 @@ Future patchUser(userId, genres, actors, directors) async {
 Future getSearchResults(searchQuery) async {
   final url = Uri.parse('https://api.tvmaze.com/search/shows?q=$searchQuery');
   final response = await http.get(url);
-  final data = jsonDecode(response.body);
+  final searchResults = jsonDecode(response.body);
 
   if (response.statusCode == 200) {
-    return data;
+    return searchResults;
+  } else {
+    throw Exception('Failed to load');
+  }
+}
+
+Future getRecommendations(userId) async {
+final url = Uri.parse('https://film-fly.onrender.com/api/users/1/recommendations');
+  final response = await http.get(url);
+  final recomendations = jsonDecode(response.body);
+
+  if (response.statusCode == 200) {
+    return recomendations;
   } else {
     throw Exception('Failed to load');
   }
