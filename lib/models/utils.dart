@@ -63,9 +63,11 @@ Future getSearchResults(searchQuery) async {
   }
 }
 
-
 Future getRecommendations(userId) async {
-final url = Uri.parse('https://film-fly.onrender.com/api/users/1/recommendations');
+  int userid = userId[0];
+  
+  final url = Uri.parse(
+      'https://film-fly.onrender.com/api/users/$userid/recommendations');
   final response = await http.get(url);
   final recomendations = jsonDecode(response.body);
 
@@ -76,15 +78,14 @@ final url = Uri.parse('https://film-fly.onrender.com/api/users/1/recommendations
   }
 }
 
-
 Future getUsers() async {
   final url = Uri.parse('https://film-fly.onrender.com/api/users');
   final response = await http.get(url);
-  final data = jsonDecode(response.body);
+  final users = jsonDecode(response.body);
+
   if (response.statusCode == 200) {
-    return data;
+    return users;
   } else {
     throw Exception('Failed to load');
   }
 }
-
