@@ -108,7 +108,7 @@ class _SignUpState extends State<SignUp> {
                               emailController.text, passwordController.text)
                           .then((user) {
                             userId.add(user[0]['user_id']);
-                            print('Sign up page: $userId');
+                            // print('Sign up page: $userId');
                       });
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(

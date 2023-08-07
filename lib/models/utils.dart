@@ -12,7 +12,8 @@ Future getPreferences(endpoint) async {
   }
 }
 
-Future postUser(String name, String username, String email, String password) async {
+Future postUser(
+    String name, String username, String email, String password) async {
   final url = Uri.parse('https://film-fly.onrender.com/api/users');
   final headers = {'Content-Type': 'application/json; charset=UTF-8'};
   final data = {
@@ -24,14 +25,13 @@ Future postUser(String name, String username, String email, String password) asy
   final response =
       await http.post(url, headers: headers, body: jsonEncode(data));
   final user = jsonDecode(response.body);
-  
+
   if (response.statusCode == 201) {
     return user;
   } else {
     throw Exception('Failed to load');
   }
 }
-
 
 Future patchUser(userId, genres, actors, directors) async {
   int userid = userId[0];
@@ -63,6 +63,7 @@ Future getSearchResults(searchQuery) async {
   }
 }
 
+
 Future getRecommendations(userId) async {
 final url = Uri.parse('https://film-fly.onrender.com/api/users/1/recommendations');
   final response = await http.get(url);
@@ -74,3 +75,16 @@ final url = Uri.parse('https://film-fly.onrender.com/api/users/1/recommendations
     throw Exception('Failed to load');
   }
 }
+
+
+Future getUsers() async {
+  final url = Uri.parse('https://film-fly.onrender.com/api/users');
+  final response = await http.get(url);
+  final data = jsonDecode(response.body);
+  if (response.statusCode == 200) {
+    return data;
+  } else {
+    throw Exception('Failed to load');
+  }
+}
+
