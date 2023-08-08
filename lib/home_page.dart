@@ -26,10 +26,19 @@ class _HomePageState extends State<HomePage> {
     }).then((value) {
       print(recommendations);
       getSearchResults(recommendations[index]).then((data) {
+        print(data);
         setState(() {
-        loading = false;
-        results = data;
+          loading = false;
+          results = data;
         });
+      });
+    });
+  }
+
+  updateList(index) {
+    getSearchResults(recommendations[index]).then((data) {
+      setState(() {
+        results = data;
       });
     });
   }
@@ -42,12 +51,10 @@ class _HomePageState extends State<HomePage> {
               child: CircularProgressIndicator(),
             )
           : GestureDetector(
-            onHorizontalDragDown: (details) {
-            setState(() {
-              index ++;
-            });
-          },
-            child: Padding(
+              onHorizontalDragDown: (details) {
+                updateList(index += 1);
+              },
+              child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
@@ -55,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(
-                            '${results[0]['show']['image']['medium']}'),
+                            '${results[0]['Poster']}'),
                         fit: BoxFit.fill,
                         alignment: const Alignment(-0.3, 0),
                       ),
@@ -77,9 +84,9 @@ class _HomePageState extends State<HomePage> {
                             Row(
                               children: [
                                 Text(
-                                  '${results[0]['show']['name']}',
+                                  '${results[0]['Title']}',
                                   style: const TextStyle(
-                                    fontSize: 32,
+                                    fontSize: 15,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -88,9 +95,9 @@ class _HomePageState extends State<HomePage> {
                                   width: 16,
                                 ),
                                 Text(
-                                  '${results[0]['show']['premiered'].substring(0, 4)}',
+                                  '${results[0]['Year']}',
                                   style: const TextStyle(
-                                    fontSize: 32,
+                                    fontSize: 14,
                                     color: Colors.white,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -104,8 +111,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-          ),
+            ),
     );
   }
 }
-
