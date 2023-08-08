@@ -25,9 +25,9 @@ class _HomePageState extends State<HomePage> {
       });
     }).then((value) {
       print(recommendations);
-      getSearchResults(recommendations[index]).then((data) {
+      return getSearchResults(recommendations[index]).then((data) {
         print(data);
-       return setState(() {
+        return setState(() {
           loading = false;
           results = data;
         });
@@ -36,8 +36,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   updateList(index) {
-    getSearchResults(recommendations[index]).then((data) {
-      setState(() {
+    return getSearchResults(recommendations[index]).then((data) {
+      return setState(() {
         results = data;
       });
     });
@@ -52,7 +52,11 @@ class _HomePageState extends State<HomePage> {
             )
           : GestureDetector(
               onHorizontalDragDown: (details) {
-                updateList(index += 1);
+                if (index == recommendations.length - 1) {
+                  updateList(index = 0);
+                } else {
+                  updateList(index += 1);
+                }
               },
               child: Padding(
                 padding: const EdgeInsets.all(10),
@@ -61,8 +65,7 @@ class _HomePageState extends State<HomePage> {
                   child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(
-                            '${results[0]['Poster']}'),
+                        image: NetworkImage('${results[0]['Poster']}'),
                         fit: BoxFit.fill,
                         alignment: const Alignment(-0.3, 0),
                       ),
