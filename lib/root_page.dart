@@ -7,7 +7,7 @@ import 'package:filmfly/profile_page.dart';
 class RootPage extends StatefulWidget {
   const RootPage({Key? key, this.userId}) : super(key: key);
 
-  final int? userId;
+  final List<int>? userId;
 
   @override
   State<RootPage> createState() => _RootPageState();
@@ -15,16 +15,20 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
-  List<Widget> pages = const [
-    HomePage(),
-    Watchlist(),
-    ProfilePage(),
-  ];
+  List<Widget> _pages() => [
+        HomePage(userId: widget.userId),
+        Watchlist(userId: widget.userId),
+        ProfilePage(userId: widget.userId),
+      ];
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = _pages();
     return Scaffold(
-      body: pages[currentPage],
+      body: IndexedStack(
+        index: currentPage,
+        children: pages,
+      ),
       appBar: AppBar(
         title: const Text('Film Fly'),
         actions: [
@@ -42,6 +46,7 @@ class _RootPageState extends State<RootPage> {
         ],
       ),
       bottomNavigationBar: NavigationBar(
+        selectedIndex: currentPage,
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
           NavigationDestination(icon: Icon(Icons.list), label: 'Watchlist'),
@@ -53,7 +58,6 @@ class _RootPageState extends State<RootPage> {
             currentPage = index;
           });
         },
-        selectedIndex: currentPage,
       ),
       drawer: Drawer(
         child: ListView(
