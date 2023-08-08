@@ -17,6 +17,7 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
   bool loading = true;
   List<dynamic> actors = [];
   List<String> selectedActors = [];
+  List<dynamic> buttonsPressed = [];
 
   @override
   void initState() {
@@ -47,20 +48,36 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
               child: CircularProgressIndicator(),
             )
           : SingleChildScrollView(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                verticalDirection: VerticalDirection.down,
-                spacing: 10,
-                children: actors.map(
-                  (actor) {
-                    return ElevatedButton(
-                      onPressed: () {
-                        onPress(actor);
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Choose your favourite actors:',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    verticalDirection: VerticalDirection.down,
+                    spacing: 10,
+                    children: actors.map(
+                      (actor) {
+                        return ElevatedButton(
+                          onPressed: buttonsPressed.contains(actor)
+                              ? null
+                              : () {
+                                  onPress(actor);
+                                  setState(() {
+                                    buttonsPressed.add(actor);
+                                  });
+                                },
+                          child: Text(actor),
+                        );
                       },
-                      child: Text(actor),
-                    );
-                  },
-                ).toList(),
+                    ).toList(),
+                  ),
+                ],
               ),
             ),
       persistentFooterButtons: <Widget>[
