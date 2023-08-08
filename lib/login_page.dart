@@ -151,8 +151,10 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
-          if (isValidUser == false) const Text('Uh oh! this account does not exist :(', style: TextStyle(color: Colors.red,
-          fontSize: 20 ))
+          if (isValidUser == false) const Center(
+            child: Text('Uh oh! This account does not exist :(', style: TextStyle(color: Colors.red,
+            fontSize: 20 )),
+          )
         ],
       ),
     );
