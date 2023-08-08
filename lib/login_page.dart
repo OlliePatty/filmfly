@@ -124,14 +124,11 @@ class _LoginState extends State<Login> {
                         if (username == value[i]['username'] &&
                             email == value[i]['email_address'] &&
                             password == value[i]['password']) {
-
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => RootPage(userId: [value[i]['user_id']]),
                               ));
-                        } else {
-                          print('not valid user');
                         }
                       }
                     });

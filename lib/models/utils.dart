@@ -51,10 +51,12 @@ Future patchUser(userId, genres, actors, directors) async {
   }
 }
 
-Future getSearchResults(searchQuery) async {
-  final url = Uri.parse('https://api.tvmaze.com/search/shows?q=$searchQuery');
+Future getSearchResults(searchTerm) async {
+  String searchQuery = searchTerm.replaceAll(' ','+');
+
+  final url = Uri.parse('https://www.omdbapi.com/?apikey=cc3111bf&s=$searchQuery');
   final response = await http.get(url);
-  final searchResults = jsonDecode(response.body);
+  final searchResults = jsonDecode(response.body)['Search'];
 
   if (response.statusCode == 200) {
     return searchResults;
@@ -65,7 +67,7 @@ Future getSearchResults(searchQuery) async {
 
 Future getRecommendations(userId) async {
   int userid = userId[0];
-  
+
   final url = Uri.parse(
       'https://film-fly.onrender.com/api/users/$userid/recommendations');
   final response = await http.get(url);
