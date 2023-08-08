@@ -22,6 +22,7 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
   bool loading = true;
   List<dynamic> directors = [];
   List<String> selectedDirectors = [];
+  List<dynamic> buttonsPressed = [];
 
   @override
   void initState() {
@@ -52,20 +53,36 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
               child: CircularProgressIndicator(),
             )
           : SingleChildScrollView(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                verticalDirection: VerticalDirection.down,
-                spacing: 10,
-                children: directors.map(
-                  (director) {
-                    return ElevatedButton(
-                      onPressed: () {
-                        onPress(director);
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Choose your favourite directors:',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    verticalDirection: VerticalDirection.down,
+                    spacing: 10,
+                    children: directors.map(
+                      (director) {
+                        return ElevatedButton(
+                          onPressed: buttonsPressed.contains(director)
+                              ? null
+                              : () {
+                                  onPress(director);
+                                  setState(() {
+                                    buttonsPressed.add(director);
+                                  });
+                                },
+                          child: Text(director),
+                        );
                       },
-                      child: Text(director),
-                    );
-                  },
-                ).toList(),
+                    ).toList(),
+                  ),
+                ],
               ),
             ),
       persistentFooterButtons: <Widget>[

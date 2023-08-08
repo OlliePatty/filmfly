@@ -15,6 +15,7 @@ class _GenrePreferencesState extends State<GenrePreferences> {
   bool loading = true;
   List<dynamic> genres = [];
   List<String> selectedGenres = [];
+  List<dynamic> buttonsPressed = [];
 
   @override
   void initState() {
@@ -45,20 +46,36 @@ class _GenrePreferencesState extends State<GenrePreferences> {
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          : Wrap(
-              alignment: WrapAlignment.center,
-              verticalDirection: VerticalDirection.down,
-              spacing: 10,
-              children: genres.map(
-                (genres) {
-                  return ElevatedButton(
-                    onPressed: () {
-                      onPress(genres);
+          : Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    'Choose your favourite genres:',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  verticalDirection: VerticalDirection.down,
+                  spacing: 10,
+                  children: genres.map(
+                    (genre) {
+                      return ElevatedButton(
+                        onPressed: buttonsPressed.contains(genre)
+                            ? null
+                            : () {
+                                onPress(genre);
+                                setState(() {
+                                  buttonsPressed.add(genre);
+                                });
+                              },
+                        child: Text(genre),
+                      );
                     },
-                    child: Text(genres),
-                  );
-                },
-              ).toList(),
+                  ).toList(),
+                ),
+              ],
             ),
       persistentFooterButtons: <Widget>[
         Container(

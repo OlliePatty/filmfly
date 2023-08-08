@@ -20,14 +20,14 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     getRecommendations(widget.userId).then((data) {
-      setState(() {
+      return setState(() {
         recommendations = data;
       });
     }).then((value) {
       print(recommendations);
       getSearchResults(recommendations[index]).then((data) {
         print(data);
-        setState(() {
+       return setState(() {
           loading = false;
           results = data;
         });
