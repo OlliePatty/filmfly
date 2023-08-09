@@ -52,9 +52,10 @@ Future patchUser(userId, genres, actors, directors) async {
 }
 
 Future getSearchResults(searchTerm) async {
-  String searchQuery = searchTerm.replaceAll(' ','+');
+  String searchQuery = searchTerm.replaceAll(' ', '+');
 
-  final url = Uri.parse('https://www.omdbapi.com/?apikey=cc3111bf&s=$searchQuery');
+  final url =
+      Uri.parse('https://www.omdbapi.com/?apikey=cc3111bf&s=$searchQuery');
   final response = await http.get(url);
   final searchResults = jsonDecode(response.body)['Search'];
 
@@ -91,3 +92,16 @@ Future getUsers() async {
     throw Exception('Failed to load');
   }
 }
+
+Future getUserLikes(userId) async {
+  final url = Uri.parse('https://film-fly.onrender.com/api/users/${userId[0]}');
+  final response = await http.get(url);
+  final user = jsonDecode(response.body);
+
+if (response.statusCode == 200) {
+    return user;
+  } else {
+    throw Exception('Failed to load');
+  }
+}
+
