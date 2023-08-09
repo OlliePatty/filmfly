@@ -1,5 +1,6 @@
 import 'package:filmfly/models/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:swipe_to/swipe_to.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, this.userId}) : super(key: key);
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       print(recommendations);
       return getSearchResults(recommendations[index]).then((data) {
         print(data);
-        return setState(() {
+        setState(() {
           loading = false;
           results = data;
         });
@@ -38,10 +39,10 @@ class _HomePageState extends State<HomePage> {
   updateList(index) {
     return getSearchResults(recommendations[index]).then((data) {
       return setState(() {
-        if(data == null){
-          index +=1;
+        if (data == null) {
+          updateList(index += 1);
         } else {
-        results = data;
+          results = data;
         }
       });
     });
@@ -54,14 +55,25 @@ class _HomePageState extends State<HomePage> {
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          : GestureDetector(
-              onHorizontalDragDown: (details) {
+          : SwipeTo(
+              onRightSwipe: () {
                 if (index == recommendations.length - 1) {
                   updateList(index = 0);
                 } else {
                   updateList(index += 1);
                 }
               },
+              iconOnRightSwipe: const IconData(0xf579,
+                  fontFamily: 'MaterialIcons', matchTextDirection: true),
+              onLeftSwipe: () {
+                if (index == 0) {
+                  updateList(index = recommendations.length - 1);
+                } else {
+                  updateList(index -= 1);
+                }
+              },
+              iconOnLeftSwipe: const IconData(0xf571, fontFamily: 'MaterialIcons', matchTextDirection: true),
+              animationDuration: const Duration(milliseconds: 25),
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: ClipRRect(
@@ -119,6 +131,15 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            persistentFooterButtons: [
+              ElevatedButton(onPressed: () {
+                
+              }, child: const Text('Dislike'),),
+              ElevatedButton(onPressed: () {
+                
+              }, child: const Text('Like'),),
+            ],
+            persistentFooterAlignment: AlignmentDirectional.bottomCenter,
     );
   }
 }
