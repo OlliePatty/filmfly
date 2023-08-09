@@ -62,7 +62,7 @@ Future getSearchResults(searchTerm) async {
   if (response.statusCode == 200) {
     return searchResults;
   } else {
-    throw Exception('Failed to load');
+    return Exception('Failed to load');
   }
 }
 
@@ -93,6 +93,7 @@ Future getUsers() async {
   }
 }
 
+
 Future getUserLikes(userId) async {
   final url = Uri.parse('https://film-fly.onrender.com/api/users/${userId[0]}');
   final response = await http.get(url);
@@ -102,6 +103,25 @@ if (response.statusCode == 200) {
     return user;
   } else {
     throw Exception('Failed to load');
+  }
+}
+
+Future patchUserWatchlist(userId, liked) async {
+  int userid = userId[0];
+  print(liked);
+  final url =
+      Uri.parse('https://film-fly.onrender.com/api/users/$userid?update=likes');
+  final headers = {'Content-Type': 'application/json'};
+  final data = {"liked": "$liked", "disliked": ""};
+  final response =
+      await http.patch(url, headers: headers, body: jsonEncode(data));
+
+  if (response.statusCode == 201) {
+    print('PATCH request successful');
+    print(response.body);
+  } else {
+    print('PATCH request failed');
+    throw Exception('Failed PATCH request');
   }
 }
 
