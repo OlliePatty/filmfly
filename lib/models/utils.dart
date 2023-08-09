@@ -52,16 +52,17 @@ Future patchUser(userId, genres, actors, directors) async {
 }
 
 Future getSearchResults(searchTerm) async {
-  String searchQuery = searchTerm.replaceAll(' ','+');
+  String searchQuery = searchTerm.replaceAll(' ', '+');
 
-  final url = Uri.parse('https://www.omdbapi.com/?apikey=cc3111bf&s=$searchQuery');
+  final url =
+      Uri.parse('https://www.omdbapi.com/?apikey=cc3111bf&s=$searchQuery');
   final response = await http.get(url);
   final searchResults = jsonDecode(response.body)['Search'];
 
   if (response.statusCode == 200) {
     return searchResults;
   } else {
-    throw Exception('Failed to load');
+    return Exception('Failed to load');
   }
 }
 
@@ -89,5 +90,24 @@ Future getUsers() async {
     return users;
   } else {
     throw Exception('Failed to load');
+  }
+}
+
+Future patchUserWatchlist(userId, liked) async {
+  int userid = userId[0];
+  print(liked);
+  final url =
+      Uri.parse('https://film-fly.onrender.com/api/users/$userid?update=likes');
+  final headers = {'Content-Type': 'application/json'};
+  final data = {"liked": "$liked", "disliked": ""};
+  final response =
+      await http.patch(url, headers: headers, body: jsonEncode(data));
+
+  if (response.statusCode == 201) {
+    print('PATCH request successful');
+    print(response.body);
+  } else {
+    print('PATCH request failed');
+    throw Exception('Failed PATCH request');
   }
 }
