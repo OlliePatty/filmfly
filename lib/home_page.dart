@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
     return getSearchResults(recommendations[index]).then((data) {
       return setState(() {
         if (data == null) {
+          print('Null Data');
           updateList(index += 1);
         } else {
           results = data;
@@ -57,6 +58,8 @@ class _HomePageState extends State<HomePage> {
             )
           : SwipeTo(
               onRightSwipe: () {
+                print('index: $index');
+                print('Length: ${recommendations.length}');
                 if (index == recommendations.length - 1) {
                   updateList(index = 0);
                 } else {
@@ -133,10 +136,9 @@ class _HomePageState extends State<HomePage> {
             ),
             persistentFooterButtons: [
               ElevatedButton(onPressed: () {
-                
               }, child: const Text('Dislike'),),
               ElevatedButton(onPressed: () {
-                
+              patchUserWatchlist(widget.userId, recommendations[index]);
               }, child: const Text('Like'),),
             ],
             persistentFooterAlignment: AlignmentDirectional.bottomCenter,

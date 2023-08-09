@@ -14,7 +14,10 @@ class _SearchPageState extends State<SearchPage> {
   void updateList(value) {
     setState(() {
       getSearchResults(value).then((data) {
+        if (data == null) {
+        } else {
         searchResults = data;
+        }
       });
     });
   }
@@ -54,29 +57,24 @@ class _SearchPageState extends State<SearchPage> {
               itemCount: searchResults.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: searchResults[index]['show']['name'] != null
+                  title: searchResults[index]['Title'] != null
                       ? Text(
-                          '${searchResults[index]['show']['name']}',
+                          '${searchResults[index]['Title']}',
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
                         )
                       : null,
-                  subtitle: searchResults[index]['show']['premiered'] != null
+                  subtitle: searchResults[index]['Year'] != null
                       ? Text(
-                          '${searchResults[index]['show']['premiered'].substring(0, 4)}',
+                          '${searchResults[index]['Year']}',
                         )
                       : null,
-                  trailing:
-                      searchResults[index]['show']['rating']['average'] != null
-                          ? Text(
-                              '${searchResults[index]['show']['rating']['average']}/10',
-                            )
-                          : const Text('N/A'),
-                  leading: searchResults[index]['show']['image'] != null
+                  leading: searchResults[index]['Poster'] != null
                       ? Image.network(
-                          '${searchResults[index]['show']['image']['medium']}')
+                          '${searchResults[index]['Poster']}')
                       : null,
+                      
                 );
               },
             ),
