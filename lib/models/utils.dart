@@ -93,6 +93,19 @@ Future getUsers() async {
   }
 }
 
+
+Future getUserLikes(userId) async {
+  final url = Uri.parse('https://film-fly.onrender.com/api/users/${userId[0]}');
+  final response = await http.get(url);
+  final user = jsonDecode(response.body);
+
+if (response.statusCode == 200) {
+    return user;
+  } else {
+    throw Exception('Failed to load');
+  }
+}
+
 Future patchUserWatchlist(userId, liked) async {
   int userid = userId[0];
   print(liked);
@@ -111,3 +124,4 @@ Future patchUserWatchlist(userId, liked) async {
     throw Exception('Failed PATCH request');
   }
 }
+
