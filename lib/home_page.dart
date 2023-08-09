@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     getRecommendations(widget.userId).then((data) {
-      return setState(() {
+      setState(() {
         recommendations = data;
       });
     }).then((value) {
@@ -38,7 +38,11 @@ class _HomePageState extends State<HomePage> {
   updateList(index) {
     return getSearchResults(recommendations[index]).then((data) {
       return setState(() {
+        if(data == null){
+          index +=1;
+        } else {
         results = data;
+        }
       });
     });
   }
