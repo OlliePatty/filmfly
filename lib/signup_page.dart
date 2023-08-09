@@ -95,7 +95,7 @@ class _SignUpState extends State<SignUp> {
                 },
                 decoration: const InputDecoration(
                   icon: Icon(Icons.person),
-                  hintText: 'What is your passowrd?',
+                  hintText: 'What is your password?',
                   labelText: 'Password',
                 ),
               ),
