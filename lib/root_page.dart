@@ -56,12 +56,14 @@ class _RootPageState extends State<RootPage> {
         ],
       ),
       bottomNavigationBar: NavigationBar(
+        backgroundColor: const Color.fromARGB(255, 46, 41, 78),
+        indicatorColor: const Color.fromARGB(255, 217, 3, 104),
         selectedIndex: currentPage,
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.list), label: 'Watchlist'),
+          NavigationDestination(icon: Icon(Icons.home, color: Colors.white), label: '',),
+          NavigationDestination(icon: Icon(Icons.list, color: Colors.white), label: ''),
           NavigationDestination(
-              icon: Icon(Icons.account_circle), label: 'Profile'),
+              icon: Icon(Icons.account_circle, color: Colors.white), label: ''),
         ],
         onDestinationSelected: (int index) {
           setState(() {
@@ -75,7 +77,7 @@ class _RootPageState extends State<RootPage> {
           children: [
             DrawerHeader(
               decoration: const BoxDecoration(
-                color: Colors.blue,
+                color: Color.fromARGB(255, 46, 41, 78),
               ),
               child: Column(
                 children: [

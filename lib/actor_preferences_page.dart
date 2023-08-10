@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:filmfly/models/utils.dart';
 import 'package:filmfly/director_preferences_page.dart';
@@ -52,30 +50,27 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
           : SingleChildScrollView(
               child: Column(
                 children: [
-        
-        AppBar(
-         automaticallyImplyLeading: false,
-        title: Container(
-          width: double.infinity,
-          height: 40,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: Center(
-            child: TextField(
-              onChanged: (value) {
-                
-              },
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.search),
-                hintText: 'Search...',
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-        ),
-      ),
+                  AppBar(
+                    automaticallyImplyLeading: false,
+                    title: Container(
+                      width: double.infinity,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Center(
+                        child: TextField(
+                          onChanged: (value) {},
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.search),
+                            hintText: 'Search...',
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   const Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
@@ -98,6 +93,9 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
                                     buttonsPressed.add(actor);
                                   });
                                 },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 217, 3, 104)),
                           child: Text(actor),
                         );
                       },
@@ -111,14 +109,10 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
           padding: const EdgeInsets.all(0),
           child: TextButton.icon(
             onPressed: () {
-              
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  
-
                   builder: (context) => DirectorPreferences(
-                    
                       userId: widget.userId,
                       selectedGenres: widget.selectedGenres,
                       selectedActors: selectedActors),

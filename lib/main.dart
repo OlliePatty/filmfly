@@ -11,12 +11,9 @@ class FilmFly extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Film Fly',
-      home: const FirstPage(),
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      home: FirstPage(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -38,8 +35,8 @@ class FirstPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 150,
-              width: 150,
+              height: 175,
+              width: 175,
               child: Image.asset('/Users/oliverpatrick/Project/filmfly/lib/Logo/FilmFlyLogoNoBG.png'),),
             ElevatedButton(
               onPressed: () {

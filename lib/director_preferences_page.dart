@@ -55,32 +55,27 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
           : SingleChildScrollView(
               child: Column(
                 children: [
-                  
                   AppBar(
-         automaticallyImplyLeading: false,
-        title: Container(
-          width: double.infinity,
-          height: 40,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: Center(
-            child: TextField(
-              onChanged: (value) {
-                
-              },
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.search),
-                hintText: 'Search...',
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-        ),
-      ),
-                  
-                  
+                    automaticallyImplyLeading: false,
+                    title: Container(
+                      width: double.infinity,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Center(
+                        child: TextField(
+                          onChanged: (value) {},
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.search),
+                            hintText: 'Search...',
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   const Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
@@ -88,10 +83,6 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
-
-                  
-
-
                   Wrap(
                     alignment: WrapAlignment.center,
                     verticalDirection: VerticalDirection.down,
@@ -107,6 +98,9 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
                                     buttonsPressed.add(director);
                                   });
                                 },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 217, 3, 104)),
                           child: Text(director),
                         );
                       },
@@ -120,7 +114,7 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
           padding: const EdgeInsets.all(0),
           child: TextButton.icon(
             onPressed: () {
-              patchUser( widget.userId,widget.selectedGenres,
+              patchUser(widget.userId, widget.selectedGenres,
                   widget.selectedActors, selectedDirectors);
               Navigator.push(
                 context,

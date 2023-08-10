@@ -58,10 +58,9 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Film Fly'),
-        centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 46, 41, 78)
-      ),
+          title: const Text('Film Fly'),
+          centerTitle: true,
+          backgroundColor: const Color.fromARGB(255, 46, 41, 78)),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -72,6 +71,12 @@ class _LoginState extends State<Login> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 150,
+                    width: 150,
+                    child: Image.asset(
+                        '/Users/oliverpatrick/Project/filmfly/lib/Logo/FilmFlyLogoNoBG.png'),
+                  ),
                   TextFormField(
                     controller: usernameController,
                     validator: (value) {
@@ -84,12 +89,18 @@ class _LoginState extends State<Login> {
                       updateUsername(value);
                     },
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.account_box_rounded, color: Color.fromARGB(255, 217, 3, 104)),
+                      icon: Icon(Icons.account_box_rounded,
+                          color: Color.fromARGB(255, 217, 3, 104)),
                       hintText: 'What is your username?',
                       labelText: 'Username',
-                      labelStyle: TextStyle(color: Color.fromARGB(255, 217, 3, 104)),
-                      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
-                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(255, 217, 3, 104)),
+                      enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 217, 3, 104))),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 217, 3, 104))),
                     ),
                   ),
                   TextFormField(
@@ -104,12 +115,18 @@ class _LoginState extends State<Login> {
                       updateEmail(value);
                     },
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.alternate_email, color: Color.fromARGB(255, 217, 3, 104)),
+                      icon: Icon(Icons.alternate_email,
+                          color: Color.fromARGB(255, 217, 3, 104)),
                       hintText: 'What is your email?',
                       labelText: 'Email',
-                      labelStyle: TextStyle(color: Color.fromARGB(255, 217, 3, 104)),
-                      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
-                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(255, 217, 3, 104)),
+                      enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 217, 3, 104))),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 217, 3, 104))),
                     ),
                   ),
                   TextFormField(
@@ -127,12 +144,18 @@ class _LoginState extends State<Login> {
                       updatePassword(value);
                     },
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.password_rounded, color: Color.fromARGB(255, 217, 3, 104)),
+                      icon: Icon(Icons.password_rounded,
+                          color: Color.fromARGB(255, 217, 3, 104)),
                       hintText: 'What is your password?',
                       labelText: 'Password',
-                      labelStyle: TextStyle(color: Color.fromARGB(255, 217, 3, 104)),
-                      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
-                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(255, 217, 3, 104)),
+                      enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 217, 3, 104))),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 217, 3, 104))),
                     ),
                   ),
                   Padding(
@@ -156,7 +179,9 @@ class _LoginState extends State<Login> {
                           }
                         });
                       },
-                      style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 217, 3, 104)),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(255, 217, 3, 104)),
                       child: const Text('Login'),
                     ),
                   ),
@@ -164,14 +189,11 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
-          SizedBox(
-              height: 75,
-              width: 75,
-              child: Image.asset('/Users/oliverpatrick/Project/filmfly/lib/Logo/FilmFlyLogoNoBG.png'),),
-          if (isValidUser == false) const Center(
-            child: Text('Uh oh! This account does not exist :(', style: TextStyle(color: Colors.red,
-            fontSize: 20 )),
-          )
+          if (isValidUser == false)
+            const Center(
+              child: Text('Uh oh! This account does not exist :(',
+                  style: TextStyle(color: Colors.red, fontSize: 20)),
+            )
         ],
       ),
     );
