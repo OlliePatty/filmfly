@@ -30,7 +30,16 @@ class _RootPageState extends State<RootPage> {
         children: pages,
       ),
       appBar: AppBar(
-        title: const Text('Film Fly'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Film Fly'),
+            SizedBox(
+              height: 25,
+              width: 25,
+              child: Image.asset('/Users/oliverpatrick/Project/filmfly/lib/Logo/FilmFlyLogoNoBG.png'),),
+          ],
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
@@ -62,15 +71,23 @@ class _RootPageState extends State<RootPage> {
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const [
+          children: [
             DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text(
-                'Film Fly',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 30, color: Colors.white),
+              child: Column(
+                children: [
+                  SizedBox(
+              height: 50,
+              width: 50,
+              child: Image.asset('/Users/oliverpatrick/Project/filmfly/lib/Logo/FilmFlyLogoNoBG.png'),),
+                 const Text(
+                    'Film Fly',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 30, color: Colors.white),
+                  ),
+                ],
               ),
             ),
           ],

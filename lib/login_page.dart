@@ -61,6 +61,7 @@ class _LoginState extends State<Login> {
         title: const Text('Film Fly'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Form(
             key: _formKey,
@@ -151,6 +152,10 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
+          SizedBox(
+              height: 75,
+              width: 75,
+              child: Image.asset('/Users/oliverpatrick/Project/filmfly/lib/Logo/FilmFlyLogoNoBG.png'),),
           if (isValidUser == false) const Center(
             child: Text('Uh oh! This account does not exist :(', style: TextStyle(color: Colors.red,
             fontSize: 20 )),
