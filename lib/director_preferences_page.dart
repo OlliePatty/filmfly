@@ -55,6 +55,32 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
           : SingleChildScrollView(
               child: Column(
                 children: [
+                  
+                  AppBar(
+         automaticallyImplyLeading: false,
+        title: Container(
+          width: double.infinity,
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Center(
+            child: TextField(
+              onChanged: (value) {
+                
+              },
+              decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.search),
+                hintText: 'Search...',
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+        ),
+      ),
+                  
+                  
                   const Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
@@ -62,6 +88,10 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
+
+                  
+
+
                   Wrap(
                     alignment: WrapAlignment.center,
                     verticalDirection: VerticalDirection.down,
