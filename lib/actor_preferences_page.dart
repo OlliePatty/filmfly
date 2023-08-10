@@ -42,6 +42,8 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Film Fly'),
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 46, 41, 78)
       ),
       body: loading
           ? const Center(

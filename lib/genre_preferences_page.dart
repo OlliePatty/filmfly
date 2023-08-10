@@ -40,6 +40,8 @@ class _GenrePreferencesState extends State<GenrePreferences> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Film Fly'),
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 46, 41, 78),
         automaticallyImplyLeading: false,
       ),
       body: loading
