@@ -31,6 +31,8 @@ class _RootPageState extends State<RootPage> {
       ),
       appBar: AppBar(
         title: const Text('Film Fly'),
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 46, 41, 78),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
