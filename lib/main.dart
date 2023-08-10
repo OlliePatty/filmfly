@@ -35,6 +35,10 @@ class FirstPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 150,
+              width: 150,
+              child: Image.asset('/Users/oliverpatrick/Project/filmfly/lib/Logo/FilmFlyLogoNoBG.png'),),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
