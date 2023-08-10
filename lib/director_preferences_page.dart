@@ -58,6 +58,7 @@ class _DirectorPreferencesState extends State<DirectorPreferences> {
               child: Column(
                 children: [
                   AppBar(
+                    backgroundColor: const Color.fromARGB(255, 46, 41, 78),
                     automaticallyImplyLeading: false,
                     title: Container(
                       width: double.infinity,

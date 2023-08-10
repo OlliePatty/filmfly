@@ -53,6 +53,7 @@ class _ActorPreferncesState extends State<ActorPrefernces> {
               child: Column(
                 children: [
                   AppBar(
+                    backgroundColor: const Color.fromARGB(255, 46, 41, 78),
                     automaticallyImplyLeading: false,
                     title: Container(
                       width: double.infinity,
