@@ -37,7 +37,7 @@ class _RootPageState extends State<RootPage> {
             SizedBox(
               height: 25,
               width: 25,
-              child: Image.asset('/Users/oliverpatrick/Project/filmfly/lib/Logo/FilmFlyLogoNoBG.png'),),
+              child: Image.asset('/Users/oliverpatrick/Project/filmfly/lib/Logo/filmflywhite.png'),),
           ],
         ),
         backgroundColor: const Color.fromARGB(255, 46, 41, 78),
@@ -84,7 +84,7 @@ class _RootPageState extends State<RootPage> {
                   SizedBox(
               height: 50,
               width: 50,
-              child: Image.asset('/Users/oliverpatrick/Project/filmfly/lib/Logo/FilmFlyLogoNoBG.png'),),
+              child: Image.asset('/Users/oliverpatrick/Project/filmfly/lib/Logo/filmflywhite.png'),),
                  const Text(
                     'Film Fly',
                     textAlign: TextAlign.center,
