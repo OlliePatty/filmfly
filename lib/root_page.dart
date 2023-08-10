@@ -40,6 +40,7 @@ class _RootPageState extends State<RootPage> {
               child: Image.asset('/Users/oliverpatrick/Project/filmfly/lib/Logo/FilmFlyLogoNoBG.png'),),
           ],
         ),
+        backgroundColor: const Color.fromARGB(255, 46, 41, 78),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
