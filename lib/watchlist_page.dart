@@ -1,10 +1,8 @@
-import 'dart:ffi';
-
 import 'package:filmfly/models/utils.dart';
 import 'package:flutter/material.dart';
 
 class Watchlist extends StatefulWidget {
-  Watchlist({Key? key, this.userId}) : super(key: key);
+  const Watchlist({Key? key, this.userId}) : super(key: key);
 
   final List<int>? userId;
 
@@ -24,12 +22,12 @@ class _WatchlistState extends State<Watchlist> {
     getUserLikes(widget.userId).then(
       (value) {
         loading = false;
-        
+
         likes = value[0]['liked_movies']['liked'];
         print(likes);
       },
-    ).then((value) {
-
+    ).then(
+      (value) {
         for (var i = 0; i < likes.length; i++) {
           getSearchResults(likes[i]).then((value) {
             images.add(value[0]['Poster']);
@@ -62,22 +60,21 @@ class _WatchlistState extends State<Watchlist> {
                           itemCount: images.length,
                           itemBuilder: (context, index) {
                             return Card(
-                              elevation:3,
+                                elevation: 3,
                                 child: Row(
-                              children: [
-                                Image(
-                        
-                                    height: 150,
-                                    image: NetworkImage(images[index])),
-                                Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Text(
-                                    likes[index],
-                                    style: const TextStyle(fontSize: 20),
-                                  ),
-                                )
-                              ],
-                            ));
+                                  children: [
+                                    Image(
+                                        height: 150,
+                                        image: NetworkImage(images[index])),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Text(
+                                        likes[index],
+                                        style: const TextStyle(fontSize: 20),
+                                      ),
+                                    )
+                                  ],
+                                ));
                           }),
                     )
                   ],

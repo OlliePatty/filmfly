@@ -58,8 +58,6 @@ class _HomePageState extends State<HomePage> {
             )
           : SwipeTo(
               onRightSwipe: () {
-                print('index: $index');
-                print('Length: ${recommendations.length}');
                 if (index == recommendations.length - 1) {
                   updateList(index = 0);
                 } else {

@@ -32,7 +32,7 @@ class _GenrePreferencesState extends State<GenrePreferences> {
     if (!selectedGenres.contains("$genre")) {
       selectedGenres.add("$genre");
     }
-    print(selectedGenres);
+    print('Selected genres: $selectedGenres');
   }
 
   @override
@@ -82,8 +82,6 @@ class _GenrePreferencesState extends State<GenrePreferences> {
           padding: const EdgeInsets.all(0),
           child: TextButton.icon(
             onPressed: () {
-              print(widget.userId);
-              onPress(genres);
               Navigator.push(
                 context,
                 MaterialPageRoute(
