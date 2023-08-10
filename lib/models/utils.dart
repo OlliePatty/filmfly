@@ -108,7 +108,7 @@ if (response.statusCode == 200) {
 
 Future patchUserWatchlist(userId, liked) async {
   int userid = userId[0];
-  print(liked);
+  print('Liked: $liked');
   final url =
       Uri.parse('https://film-fly.onrender.com/api/users/$userid?update=likes');
   final headers = {'Content-Type': 'application/json'};

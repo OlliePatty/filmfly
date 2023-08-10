@@ -18,24 +18,22 @@ class _WatchlistState extends State<Watchlist> {
   @override
   void initState() {
     super.initState();
-
-    getUserLikes(widget.userId).then(
-      (value) {
+    getUserLikes(widget.userId).then((value) {
+      setState(() {
         loading = false;
-
         likes = value[0]['liked_movies']['liked'];
         print(likes);
-      },
-    ).then(
-      (value) {
+      });
+      }).then((value) {
         for (var i = 0; i < likes.length; i++) {
           getSearchResults(likes[i]).then((value) {
+            setState(() {
             images.add(value[0]['Poster']);
+            });
           });
         }
         print(images.length);
-      },
-    );
+      });
   }
 
   @override
@@ -45,39 +43,46 @@ class _WatchlistState extends State<Watchlist> {
             ? const Center(
                 child: CircularProgressIndicator(),
               )
-            : Center(
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text(
-                        'Your Watchlist:',
-                        style: TextStyle(fontSize: 20),
+            : RefreshIndicator(
+                onRefresh: () async {
+                  return setState(() {
+                    
+                  });
+                },
+                child: Center(
+                  child: Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          'Your Watchlist:',
+                          style: TextStyle(fontSize: 20),
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                          itemCount: images.length,
-                          itemBuilder: (context, index) {
-                            return Card(
-                                elevation: 3,
-                                child: Row(
-                                  children: [
-                                    Image(
-                                        height: 150,
-                                        image: NetworkImage(images[index])),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Text(
-                                        likes[index],
-                                        style: const TextStyle(fontSize: 20),
-                                      ),
-                                    )
-                                  ],
-                                ));
-                          }),
-                    )
-                  ],
+                      Expanded(
+                        child: ListView.builder(
+                            itemCount: images.length,
+                            itemBuilder: (context, index) {
+                              return Card(
+                                  elevation: 3,
+                                  child: Row(
+                                    children: [
+                                      Image(
+                                          height: 150,
+                                          image: NetworkImage(images[index])),
+                                      Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Text(
+                                          likes[index],
+                                          style: const TextStyle(fontSize: 20),
+                                        ),
+                                      )
+                                    ],
+                                  ));
+                            }),
+                      )
+                    ],
+                  ),
                 ),
               ));
   }

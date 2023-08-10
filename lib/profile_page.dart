@@ -22,6 +22,10 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(
+              height: 75,
+              width: 75,
+              child: Image.asset('/Users/oliverpatrick/Project/filmfly/lib/Logo/FilmFlyLogoNoBG.png'),),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 217, 3, 104)), 
               child: const Text('Reset Preferences'),

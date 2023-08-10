@@ -146,6 +146,10 @@ class _SignUpState extends State<SignUp> {
                   child: const Text('Submit'),
                 ),
               ),
+              SizedBox(
+              height: 75,
+              width: 75,
+              child: Image.asset('/Users/oliverpatrick/Project/filmfly/lib/Logo/FilmFlyLogoNoBG.png'),),
             ],
           ),
         ),
