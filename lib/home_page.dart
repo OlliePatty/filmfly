@@ -134,10 +134,10 @@ class _HomePageState extends State<HomePage> {
             ),
             persistentFooterButtons: [
               ElevatedButton(onPressed: () {
-              }, child: const Text('Dislike'),),
+              }, style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 217, 3, 104)), child: const Text('Dislike'),),
               ElevatedButton(onPressed: () {
               patchUserWatchlist(widget.userId, recommendations[index]);
-              }, child: const Text('Like'),),
+              }, style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 217, 3, 104)), child: const Text('Like'),),
             ],
             persistentFooterAlignment: AlignmentDirectional.bottomCenter,
     );

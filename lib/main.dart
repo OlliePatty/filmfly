@@ -30,6 +30,8 @@ class FirstPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Film Fly'),
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 46, 41, 78)
       ),
       body: Center(
         child: Column(
@@ -44,6 +46,7 @@ class FirstPage extends StatelessWidget {
                   ),
                 );
               },
+              style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 217, 3, 104)),
               child: const Text('Login'),
             ),
             ElevatedButton(
@@ -55,6 +58,7 @@ class FirstPage extends StatelessWidget {
                   ),
                 );
               },
+              style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 217, 3, 104)),
               child: const Text('Sign Up'),
             ),
           ],

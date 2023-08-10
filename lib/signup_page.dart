@@ -32,6 +32,8 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Film Fly'),
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 46, 41, 78)
       ),
       body: Form(
         key: _formKey,
@@ -48,10 +50,14 @@ class _SignUpState extends State<SignUp> {
                   }
                   return null;
                 },
+                cursorColor: Color.fromARGB(255, 217, 3, 104),
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.person),
+                  icon: Icon(Icons.tag_faces, color: Color.fromARGB(255, 217, 3, 104)),
                   hintText: 'What is your name?',
                   labelText: 'Name',
+                  labelStyle: TextStyle(color: Color.fromARGB(255, 217, 3, 104)),
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
                 ),
               ),
               TextFormField(
@@ -62,10 +68,14 @@ class _SignUpState extends State<SignUp> {
                   }
                   return null;
                 },
+                cursorColor: Color.fromARGB(255, 217, 3, 104),
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.person),
+                  icon: Icon(Icons.account_box_rounded, color: Color.fromARGB(255, 217, 3, 104)),
                   hintText: 'What is your username?',
                   labelText: 'Username',
+                  labelStyle: TextStyle(color: Color.fromARGB(255, 217, 3, 104)),
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
                 ),
               ),
               TextFormField(
@@ -76,10 +86,14 @@ class _SignUpState extends State<SignUp> {
                   }
                   return null;
                 },
+                cursorColor: Color.fromARGB(255, 217, 3, 104),
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.person),
+                  icon: Icon(Icons.alternate_email, color: Color.fromARGB(255, 217, 3, 104)),
                   hintText: 'What is your email?',
                   labelText: 'Email',
+                  labelStyle: TextStyle(color: Color.fromARGB(255, 217, 3, 104)),
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
                 ),
               ),
               TextFormField(
@@ -93,10 +107,14 @@ class _SignUpState extends State<SignUp> {
                   }
                   return null;
                 },
+                cursorColor: Color.fromARGB(255, 217, 3, 104),
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.person),
+                  icon: Icon(Icons.password_rounded, color: Color.fromARGB(255, 217, 3, 104)),
                   hintText: 'What is your password?',
                   labelText: 'Password',
+                  labelStyle: TextStyle(color: Color.fromARGB(255, 217, 3, 104)),
+                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
+                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
                 ),
               ),
               Padding(
@@ -124,6 +142,7 @@ class _SignUpState extends State<SignUp> {
                       );
                     }
                   },
+                  style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 217, 3, 104)),
                   child: const Text('Submit'),
                 ),
               ),

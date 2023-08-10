@@ -23,6 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 217, 3, 104)), 
               child: const Text('Reset Preferences'),
               onPressed: () {
                 print(widget.userId);
@@ -36,6 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
               },
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 217, 3, 104)),
               child: const Text('Log Out'),
               onPressed: () {
                 Navigator.push(

@@ -59,6 +59,8 @@ class _LoginState extends State<Login> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Film Fly'),
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 46, 41, 78)
       ),
       body: Column(
         children: [
@@ -81,9 +83,12 @@ class _LoginState extends State<Login> {
                       updateUsername(value);
                     },
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.person),
+                      icon: Icon(Icons.account_box_rounded, color: Color.fromARGB(255, 217, 3, 104)),
                       hintText: 'What is your username?',
                       labelText: 'Username',
+                      labelStyle: TextStyle(color: Color.fromARGB(255, 217, 3, 104)),
+                      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
+                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
                     ),
                   ),
                   TextFormField(
@@ -98,9 +103,12 @@ class _LoginState extends State<Login> {
                       updateEmail(value);
                     },
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.person),
+                      icon: Icon(Icons.alternate_email, color: Color.fromARGB(255, 217, 3, 104)),
                       hintText: 'What is your email?',
                       labelText: 'Email',
+                      labelStyle: TextStyle(color: Color.fromARGB(255, 217, 3, 104)),
+                      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
+                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
                     ),
                   ),
                   TextFormField(
@@ -118,9 +126,12 @@ class _LoginState extends State<Login> {
                       updatePassword(value);
                     },
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.person),
+                      icon: Icon(Icons.password_rounded, color: Color.fromARGB(255, 217, 3, 104)),
                       hintText: 'What is your password?',
                       labelText: 'Password',
+                      labelStyle: TextStyle(color: Color.fromARGB(255, 217, 3, 104)),
+                      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
+                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 217, 3, 104))),
                     ),
                   ),
                   Padding(
@@ -144,6 +155,7 @@ class _LoginState extends State<Login> {
                           }
                         });
                       },
+                      style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 217, 3, 104)),
                       child: const Text('Login'),
                     ),
                   ),
