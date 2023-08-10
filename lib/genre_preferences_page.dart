@@ -70,6 +70,7 @@ class _GenrePreferencesState extends State<GenrePreferences> {
                                   buttonsPressed.add(genre);
                                 });
                               },
+                              style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 217, 3, 104)),
                         child: Text(genre),
                       );
                     },
